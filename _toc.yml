@@ -4,8 +4,7 @@
 format: jb-book
 root: docs/intro
 chapters:
-- file: docs/PhaseIII
-# - file: docs/Final_Project_DS_121
-# - file: docs/HW4_DS210
-# - file: docs/Store_Decision_Making_Analysis
-# PhaseIII.ipynb
+- file: docs/Collection&Cleaning.ipynb
+# - file: docs/PhaseIII
+# - file: docs/
+# - file: docs/
