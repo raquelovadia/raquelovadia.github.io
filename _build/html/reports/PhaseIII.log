@@ -1,0 +1,90 @@
+Traceback (most recent call last):
+  File "/Users/mosherosenstock/opt/anaconda3/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/mosherosenstock/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/mosherosenstock/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/mosherosenstock/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/mosherosenstock/opt/anaconda3/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/Users/mosherosenstock/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/mosherosenstock/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/mosherosenstock/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def csv_parser():
+    data = pd.read_csv('worldcities.csv',on_bad_lines='skip',delimiter=';')
+    data=data.drop(['Geoname ID','ASCII Name','LABEL EN','Alternate Names','Feature Class',
+                    'Feature Code','Country Code 2','Admin1 Code','DIgital Elevation Model',
+                    'Admin2 Code','Admin3 Code','Admin4 Code','Elevation','Timezone',
+                    'Modification date',],axis=1)
+    lat_long = data['Coordinates'].str.split(',', expand=True)
+    data['Latitude'],data['Longitude']=lat_long.values.T
+    data.drop(['Coordinates'],axis=1,inplace=True)
+    data.rename(columns = {'Country name EN': 'Country'}, inplace = True)
+    code_dict = extra('https://sustainablesources.com/resources/country-abbreviations/')
+    for i in range(len(data)):
+        if data.loc[i,'Country'] is np.nan:
+            try:
+                country = code_dict[data.loc[i,'Country Code'].lower()]
+                data.loc[i,'Country'] = country  
+            except:
+                continue
+
+    country = data['Country'].str.split(',', expand=True)
+    data['Country'],data['else']=country.values.T
+    countries1 = set([data.loc[i,'Country'] for i in range(len(data))] )
+
+    kd = pd.read_excel('Diseases.xlsx', sheet_name = 'Kidney Disease')
+    countries = [kd.loc[i,'Country'] for i in range(len(kd))]    
+
+    uncommon = [data.loc[i,'Country'] for i in range(len(data)) if data.loc[i,'Country'] not in countries]
+    uncommon = list(set([country for country in uncommon if not pd.isna(country)]))
+    data = data.set_index('Country')
+    data = data.drop(uncommon, axis=0)
+    data = data.reset_index()
+    data.drop('else', axis =1, inplace=True)
+
+    count = len(set([data.loc[i,'Country'] for i in range(len(data))]))
+    data[["Latitude", "Longitude"]] = data[["Latitude", "Longitude"]].apply(pd.to_numeric)
+    total_pop = pd.DataFrame(data.groupby("Country")['Population'].sum()).reset_index()
+    avg_lat = pd.DataFrame(data.groupby("Country")['Latitude'].mean()).reset_index()
+    avg_lon = pd.DataFrame(data.groupby("Country")['Longitude'].mean()).reset_index()
+
+    for i in range(len(avg_lat)):
+        avg_lat.loc[i,'Latitude'] = round(avg_lat.loc[i,'Latitude'] ,5)
+    for i in range(len(avg_lat)):
+        avg_lon.loc[i,'Longitude'] = round(avg_lon.loc[i,'Longitude'] ,5)
+
+    new_data = total_pop.set_index('Country').join(avg_lat.set_index('Country')).join(avg_lon.set_index('Country'))
+    new_data.to_csv('clean_countries.csv')
+
+    return new_data
+
+############ Function Call ############
+csv_parser()
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Input [0;32mIn [7][0m, in [0;36m<cell line: 51>[0;34m()[0m
+[1;32m     48[0m     [38;5;28;01mreturn[39;00m new_data
+[1;32m     50[0m [38;5;66;03m############ Function Call ############[39;00m
+[0;32m---> 51[0m [43mcsv_parser[49m[43m([49m[43m)[49m
+
+Input [0;32mIn [7][0m, in [0;36mcsv_parser[0;34m()[0m
+[1;32m      9[0m data[38;5;241m.[39mdrop([[38;5;124m'[39m[38;5;124mCoordinates[39m[38;5;124m'[39m],axis[38;5;241m=[39m[38;5;241m1[39m,inplace[38;5;241m=[39m[38;5;28;01mTrue[39;00m)
+[1;32m     10[0m data[38;5;241m.[39mrename(columns [38;5;241m=[39m {[38;5;124m'[39m[38;5;124mCountry name EN[39m[38;5;124m'[39m: [38;5;124m'[39m[38;5;124mCountry[39m[38;5;124m'[39m}, inplace [38;5;241m=[39m [38;5;28;01mTrue[39;00m)
+[0;32m---> 11[0m code_dict [38;5;241m=[39m [43mextra[49m([38;5;124m'[39m[38;5;124mhttps://sustainablesources.com/resources/country-abbreviations/[39m[38;5;124m'[39m)
+[1;32m     12[0m [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;28mlen[39m(data)):
+[1;32m     13[0m     [38;5;28;01mif[39;00m data[38;5;241m.[39mloc[i,[38;5;124m'[39m[38;5;124mCountry[39m[38;5;124m'[39m] [38;5;129;01mis[39;00m np[38;5;241m.[39mnan:
+
+[0;31mNameError[0m: name 'extra' is not defined
+NameError: name 'extra' is not defined
+
