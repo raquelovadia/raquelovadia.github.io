@@ -3,6 +3,8 @@
 
 # # Data Cleaning and Visualization Project
 
+# This project involved collecting datasets from various sources, cleaning and formatting them in order for them to be analyzed, and then creating visualizations with Python to gain a better understanding of the data. After the data was collected, it was scraped and cleaned, and then analyzed using a variety of methods. Finally, the data was visualized using Plotly and the visualizations were used to gain further insights into the data.
+
 # ## Data Collection and Cleaning
 # 
 # 
@@ -18,6 +20,7 @@ import requests, time, re, json
 from bs4 import BeautifulSoup
 import plotly.express as px
 import plotly.graph_objects as go
+from IPython.display import Image
 from pprint import pprint
 
 
@@ -38,11 +41,8 @@ def html_parser(url_list):
         key = url[:-5]
         full_dict[key] = adict
     return(full_dict)
-
     
-#USE THE BELOW STATEMENT TO EXPLAIN WHY WE ARE USING THE HTML THIS WAY    
-#the website we were going to use had a forbidden error, so we downloaded the html files and implemented the beautiful soup we would have.
-
+#The website we were going to use had a forbidden error, so we downloaded the html files and implemented the beautiful soup module.
 
 ############ Function Call ############
 html_parser(['KidneyDisease.html', 'Malaria.html', 'SkinCancer.html',])
@@ -100,6 +100,27 @@ writer.save()
 # In[7]:
 
 
+def extra(url):
+    r=requests.get(url)
+    soup = BeautifulSoup(r.text, 'html.parser')  
+    table=soup.find_all('tr')[2:250]
+    code_dict = {}
+    str_list = []
+    for row in table:
+        str_list.append(row.text)
+    for country in str_list:
+        code_dict[country[0:2].lower()] = country[2:].split(',')[0]
+    return code_dict
+
+pass
+
+############ Function Call ############
+extra('https://sustainablesources.com/resources/country-abbreviations/')
+
+
+# In[8]:
+
+
 def csv_parser():
     data = pd.read_csv('worldcities.csv',on_bad_lines='skip',delimiter=';')
     data=data.drop(['Geoname ID','ASCII Name','LABEL EN','Alternate Names','Feature Class',
@@ -154,18 +175,13 @@ csv_parser()
 
 
 # ### Web Collection #3
-
-# In[6]:
-
-
 def api_parser():
     data = pd.read_csv('clean_countries.csv') 
     new = data.loc[:, ['Latitude', 'Longitude']]
     coordinates = [tuple(new.iloc[row]) for row in range(int(len(new)))]
     data_dict = {}
     for i in range(len(coordinates)):
-        url = f'https://api.open-meteo.com/v1/forecast?latitude={coordinates[i][0]}&longitude={coordinates[i][1]}
-        &daily=weathercode,temperature_2m_max,temperature_2m_mi,precipitation_sum,rain_sum,shortwave_radiati         on_sum&timezone=auto&start_date=2022-06-12&end_date=2022-12-06'
+        url = f'https://api.open-meteo.com/v1/forecast?latitude={coordinates[i][0]}&longitude={coordinates[i][1]}&daily=weathercode,temperature_2m_max,temperature_2m_mi,precipitation_sum,rain_sum,shortwave_radiation_sum&timezone=auto&start_date=2022-06-12&end_date=2022-12-06'
         r=requests.get(url)
         weather = r.json()
         time.sleep(1)
@@ -182,8 +198,7 @@ pass
 ############ Function Call ############
 api_parser()
 
-
-# In[8]:
+# In[9]:
 
 
 with open('api_dict.json') as f:
@@ -209,30 +224,6 @@ with open('avg_api.json', 'w') as f:
 pprint(country_dict)
 
 
-# ### Extra Web Collection
-
-# In[8]:
-
-
-def extra(url):
-    r=requests.get(url)
-    soup = BeautifulSoup(r.text, 'html.parser')  
-    table=soup.find_all('tr')[2:250]
-    code_dict = {}
-    str_list = []
-    for row in table:
-        str_list.append(row.text)
-    for country in str_list:
-        code_dict[country[0:2].lower()] = country[2:].split(',')[0]
-    return code_dict
-
-pass
-
-    
-############ Function Call ############
-extra('https://sustainablesources.com/resources/country-abbreviations/')
-
-
 # ### Data Sources
 # 
 # Sources to our datasets. 
@@ -247,7 +238,12 @@ extra('https://sustainablesources.com/resources/country-abbreviations/')
 
 # ### Insights
 
-# In[2]:
+# #### Insight 1 Explanation
+# 
+# For the first insight, we wanted to check which countries have the highest short-wave radiation and highest skin cancer rates to check if there is a correlation between these two variables. For the code, we first read the 'avg_api.json', and the skin cancer sheet from the 'Diseases.xlsx' excel file. Then, we created separate lists of the countries with the ten highest shortwave radiation sum and the highest skin cancer rates. Finally, we compared the two lists to find which countries have both high shortwave radiation sum and high skin cancer rates. The overlapping countries between these lists were Malawi and Namibia which demonstrates that there is a correlation between countries having high shortwave radiation and skin cancer rates.
+# 
+
+# In[10]:
 
 
 # Which are the ten countries with the highest shortwave radiation sum? Which are the ones with a higher 
@@ -282,12 +278,12 @@ def insight1():
 insight1()
 
 
-# #### Insight 1 Explanation
+# #### Insight 2 Explanation
 # 
-# For the first insight, we wanted to check which countries have the highest short-wave radiation and highest skin cancer rates to check if there is a correlation between these two variables. For the code, we first read the 'avg_api.json', and the skin cancer sheet from the 'Diseases.xlsx' excel file. Then, we created separate lists of the countries with the ten highest shortwave radiation sum and the highest skin cancer rates. Finally, we compared the two lists to find which countries have both high shortwave radiation sum and high skin cancer rates. The overlapping countries between these lists were Malawi and Namibia which demonstrates that there is a correlation between countries having high shortwave radiation and skin cancer rates.
+# For the second insight, we wanted to check if the countries that have the highest temperatures were the same as the ones that have the least precipitation as there is a lot of debate on whether precipitation relates to lower temperatures. For this code, we loaded the avg API JSON file into the variable data and then created a list of tuples with each country, its maximum temperature, and its precipitation sum. Then we created 2 dictionaries: one with the temperatures for each country, and one with the precipitation. We turned each dictionary into a data frame and joined them together. Then, we found the difference between temperature and precipitation to see if there were major differences. When the difference column for a country shows a larger number, greater than 30, for example, it means the temperature rate is way higher than the precipitation rate, which shows that these countries have low precipitation and high temperatures.
 # 
 
-# In[3]:
+# In[11]:
 
 
 # Are the countries with the highest temperature the ones with the least precipitation? 
@@ -315,12 +311,12 @@ def insight2():
 insight2()
 
 
-# #### Insight 2 Explanation
+# #### Insight 3 Explanation
 # 
-# For the second insight, we wanted to check if the countries that have the highest temperatures were the same as the ones that have the least precipitation as there is a lot of debate on whether precipitation relates to lower temperatures. For this code, we loaded the avg API JSON file into the variable data and then created a list of tuples with each country, its maximum temperature, and its precipitation sum. Then we created 2 dictionaries: one with the temperatures for each country, and one with the precipitation. We turned each dictionary into a data frame and joined them together. Then, we found the difference between temperature and precipitation to see if there were major differences. When the difference column for a country shows a larger number, greater than 30, for example, it means the temperature rate is way higher than the precipitation rate, which shows that these countries have low precipitation and high temperatures.
+# For the third insight, we wanted to check if countries near the equator, which have latitudes close to 0, are related to having higher kidney disease rates. We first read two datasets, the clean countries CSV and the kidney disease sheet from the excel file. Then we created two separate lists containing the countries near the equator and countries far from the equator respectively. We then created A third and fourth list which contains the country and its kidney disease rate for the countries in the close countries list and the countries in the far countries list. Finally, we calculated the average kidney disease rates for these countries. The results show that the average kidney disease rate for countries near the Equator is almost 32%, while for countries far from the Equator, it’s around 4%. This shows that countries located near the Equator have a higher kidney disease rate.
 # 
 
-# In[4]:
+# In[12]:
 
 
 # How does living near the Equator relates to higher kidney disease rates (hence, higher disease transmission)?
@@ -346,12 +342,12 @@ def insight3():
 insight3()
 
 
-# #### Insight 3 Explanation
+# #### Insight 4 Explanation
 # 
-# For the third insight, we wanted to check if countries near the equator, which have latitudes close to 0, are related to having higher kidney disease rates. We first read two datasets, the clean countries CSV and the kidney disease sheet from the excel file. Then we created two separate lists containing the countries near the equator and countries far from the equator respectively. We then created A third and fourth list which contains the country and its kidney disease rate for the countries in the close countries list and the countries in the far countries list. Finally, we calculated the average kidney disease rates for these countries. The results show that the average kidney disease rate for countries near the Equator is almost 32%, while for countries far from the Equator, it’s around 4%. This shows that countries located near the Equator have a higher kidney disease rate.
+# For this insight, we wanted to find how many people were affected with malaria disease in each country, and subsequently the percentage by country of the total people affected with the disease. For the code, we first read the clean countries CSV and the malaria sheet from the excel file. Then, we created a dictionary in which each key is a country and each value is a tuple containing the malaria rate and population, skipping the country if the rate was zero, as this wouldn’t give us any important information. Afterward, we converted the dictionary into a list of tuples, removing all countries with nan population, and then sorted the data by malaria rate from highest to lowest. We put this into a data frame and then calculated the number of people affected by malaria in each country, and the percentage of the total affected people for each country. We found that the percentage of people affected proportionally is really high in some countries that have a lower malaria disease rate. For example, in the top 1 country with a malaria rate of 61, Sierra Leone, only 1.52% of people were affected, whereas in Nigeria, with a malaria rate of 34, 27% of people were affected.
 # 
 
-# In[5]:
+# In[13]:
 
 
 # How many people are affected by Malaria Disease per country? 
@@ -385,12 +381,12 @@ def insight4():
 insight4()
 
 
-# #### Insight 4 Explanation
+# #### Insight 5 Explanation
 # 
-# For this insight, we wanted to find how many people were affected with malaria disease in each country, and subsequently the percentage by country of the total people affected with the disease. For the code, we first read the clean countries CSV and the malaria sheet from the excel file. Then, we created a dictionary in which each key is a country and each value is a tuple containing the malaria rate and population, skipping the country if the rate was zero, as this wouldn’t give us any important information. Afterward, we converted the dictionary into a list of tuples, removing all countries with nan population, and then sorted the data by malaria rate from highest to lowest. We put this into a data frame and then calculated the number of people affected by malaria in each country, and the percentage of the total affected people for each country. We found that the percentage of people affected proportionally is really high in some countries that have a lower malaria disease rate. For example, in the top 1 country with a malaria rate of 61, Sierra Leone, only 1.52% of people were affected, whereas in Nigeria, with a malaria rate of 34, 27% of people were affected.
+# For the fifth insight, we wanted to know what are the kidney disease rates of the countries that have dusty air conditions and sandstorms to check if this affects kidney disease rates. This code creates a data frame that contains the average Kidney Disease rate for countries with weather codes between 6 and 9 and 30 and 35 (which represent dusty air conditions). The function 'rate()' is a helper function that assigns a label to the Kidney Disease rate based on its value: high, medium, or low. With the function 'insight5()' we then created a dataframe from the data loaded from the 'avg_api’ JSON file and the kidney disease sheet from the excel, filtering out countries with the desired weather code, and creating a new column 'Evaluation' which assigns the label to each Kidney Disease rate. We can see that countries with dusty air conditions and sandstorms such as Nicaragua, Pakistan, and Ecuador also have very high kidney disease rates, above 35. However, some of the countries with these weather codes do not have high kidney disease rates such as Tajikistan', 'Italy', and 'Hungary with kidney disease rates between 3 and 8. 
 # 
 
-# In[6]:
+# In[14]:
 
 
 # What are the kidney disease rates of the countries that have dusty air conditions or sand storms 
@@ -423,12 +419,12 @@ def insight5():
 insight5()
 
 
-# #### Insight 5 Explanation
+# #### Extra Insight Explanation
 # 
-# For the fifth insight, we wanted to know what are the kidney disease rates of the countries that have dusty air conditions and sandstorms to check if this affects kidney disease rates. This code creates a data frame that contains the average Kidney Disease rate for countries with weather codes between 6 and 9 and 30 and 35 (which represent dusty air conditions). The function 'rate()' is a helper function that assigns a label to the Kidney Disease rate based on its value: high, medium, or low. With the function 'insight5()' we then created a dataframe from the data loaded from the 'avg_api’ JSON file and the kidney disease sheet from the excel, filtering out countries with the desired weather code, and creating a new column 'Evaluation' which assigns the label to each Kidney Disease rate. We can see that countries with dusty air conditions and sandstorms such as Nicaragua, Pakistan, and Ecuador also have very high kidney disease rates, above 35. However, some of the countries with these weather codes do not have high kidney disease rates such as Tajikistan', 'Italy', and 'Hungary with kidney disease rates between 3 and 8. 
+# We wanted to find which country or countries are in the top twenty for at least two diseases. We first read the excel file to extract the top 20 countries from three sheets: Kidney Disease, Malaria, and Skin Cancer. Then, we stored them in three different lists: top20_kd, top20_m, and top20_sc respectively. Finally, we iterated through each list and compared them to the other lists to find any countries that appear in at least 2 lists. In our common list, we can see that six countries overlap between the top20_kd, top20_m, and top20_sc lists. These countries are 'Angola', 'Lesotho', 'Malawi', 'Mozambique', 'Swaziland', and 'Togo'. 
 # 
 
-# In[7]:
+# In[15]:
 
 
 # EXTRA
@@ -460,14 +456,9 @@ def extra():
 extra()
 
 
-# #### Extra Insight Explanation
-# 
-# We wanted to find which country or countries are in the top twenty for at least two diseases. We first read the excel file to extract the top 20 countries from three sheets: Kidney Disease, Malaria, and Skin Cancer. Then, we stored them in three different lists: top20_kd, top20_m, and top20_sc respectively. Finally, we iterated through each list and compared them to the other lists to find any countries that appear in at least 2 lists. In our common list, we can see that six countries overlap between the top20_kd, top20_m, and top20_sc lists. These countries are 'Angola', 'Lesotho', 'Malawi', 'Mozambique', 'Swaziland', and 'Togo'. 
-# 
-
 # ### Data Visualizations
 
-# In[3]:
+# In[16]:
 
 
 def visual1():
@@ -498,7 +489,9 @@ def visual1():
     fig.show()
 
 ############ Function Call ############
-visual1()
+# visual1()
+
+Image("1.png")
 
 
 # #### Visualization 1 Explanation
@@ -508,7 +501,7 @@ visual1()
 # We wanted to do this to have a visual of the highest shortwave radiation countries. By the side of the graph we can see the radiation bar which represents the levels of shortwave radiation and the colors that represent each range of radiation on top of the map. Countries with the highest shortwave radiation are covered by yellow, orange color. Countries with average radiation rates are colores in a burgundy color and the ones with low radiation rates are colored in purple or blue. With this visualization we can see that that countries near the Equator have higher shortwave radiation. We can also notice that most of Africa and countries in Eastern Europe and the Middle East also have high radiation rates. 
 # 
 
-# In[4]:
+# In[17]:
 
 
 def visual2():
@@ -548,9 +541,10 @@ def visual2():
                      )
     fig.show()
     
-
 ############ Function Call ############
-visual2()
+# visual2()
+
+Image("2.png")
 
 
 # #### Visualization 2 Explanation
@@ -558,7 +552,7 @@ visual2()
 # For our second visualization, we wanted a visual that showed the top 100 countries with higher kidney disease, malaria, and skin cancer rates. The size of the population of each country is symbolized by the size of the circles. The bigger the circle, the more population. With this graph, we can see which countries have higher rates of each of the diseases. For example, we can see that Swaziland has a low Skin Cancer and kidney disease rate, and a high malaria rate. 
 # 
 
-# In[5]:
+# In[18]:
 
 
 def visual3():
@@ -621,9 +615,10 @@ def visual3():
 
     fig.show()
 
-
 ############ Function Call ############
-visual3()
+# visual3()
+
+Image("3.png")
 
 
 # #### Visualization 3 Explanation
@@ -633,7 +628,7 @@ visual3()
 
 # ## Summary Files
 
-# In[11]:
+# In[19]:
 
 
 def risk(kdrate, mrate, scrate):

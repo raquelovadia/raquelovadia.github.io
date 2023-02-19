@@ -5,6 +5,6 @@ format: jb-book
 root: docs/intro
 chapters:
 - file: docs/Collection&Cleaning.ipynb
-# - file: docs/PhaseIII
+- file: docs/Lab01.ipynb
 # - file: docs/
 # - file: docs/
