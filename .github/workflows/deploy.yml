@@ -3,27 +3,27 @@ name: Deploy Jupyter Book
 on:
   push:
     branches:
-      - main  # Replace 'main' with your branch name
+      - main  # Replace with the branch you want to trigger the build
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: '3.8'
 
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
           pip install jupyter-book ghp-import
 
       - name: Build the Jupyter Book
-        run: jupyter-book build Desktop/raquelovadia.github.io/
+        run: jupyter-book build .
 
       - name: Deploy to GitHub Pages
-        run: |
-          ghp-import -n -p -f raquelovadia.github.io/_build/html
+        run: ghp-import -n -p -f _build/html
