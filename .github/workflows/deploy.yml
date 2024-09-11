@@ -22,7 +22,7 @@ jobs:
           pip install jupyter-book ghp-import
 
       - name: Build the Jupyter Book
-        run: jupyter-book build raquelovadia.github.io/
+        run: jupyter-book build Desktop/raquelovadia.github.io/
 
       - name: Deploy to GitHub Pages
         run: |
