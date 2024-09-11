@@ -3,7 +3,7 @@ name: Deploy Jupyter Book
 on:
   push:
     branches:
-      - main  # Replace with the branch you want to trigger the build
+      - main  # Replace with your branch name
 
 jobs:
   build:
@@ -26,4 +26,7 @@ jobs:
         run: jupyter-book build .
 
       - name: Deploy to GitHub Pages
-        run: ghp-import -n -p -f _build/html
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_TOKEN }}
+        run: |
+          ghp-import -n -p -f _build/html
