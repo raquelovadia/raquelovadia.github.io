@@ -1,110 +1,176 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Data Cleaning and Visualization Project &#8212; Raquel Ovadia</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/Collection&Cleaning';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Web Development Project" href="Lab01.html" />
-    <link rel="prev" title="Welcome to my personal portfolio!" href="intro.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="prev" title="Exploring the Relationship Between Gender and Wages" href="ISYE3030.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/RO_logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Raquel Ovadia</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/RO_logo.png" class="logo__image only-light" alt="Raquel Ovadia - Home"/>
+    <script>document.write(`<img src="../_static/RO_logo.png" class="logo__image only-dark" alt="Raquel Ovadia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -114,472 +180,250 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Data Cleaning and Visualization Project
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Lab01.html">
-   Web Development Project
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="CX4240.html">Optimal Spanish Keyboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISYE4031.html">EDA of Yahoo Stock Price Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISYE3030.html">Exploring the Relationship Between Gender and Wages</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Cleaning and Visualization Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab01.html">Web Development Project</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/raquelovadia/raquelovadia.github.io/master?urlpath=tree/docs/docs/Collection&Cleaning.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/raquelovadia/raquelovadia.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/raquelovadia/raquelovadia.github.io/issues/new?title=Issue%20on%20page%20%2Fdocs/Collection&Cleaning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/Collection&Cleaning.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/raquelovadia/raquelovadia.github.io"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/raquelovadia/raquelovadia.github.io/issues/new?title=Issue%20on%20page%20%2Fdocs/Collection&Cleaning.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/docs/Collection&Cleaning.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </button>
-
-      </li>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
+    </div>
   
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-collection-and-cleaning">
-   Data Collection and Cleaning
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#web-collection-1">
-     Web Collection #1
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#web-collection-2">
-     Web Collection #2
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#web-collection-3">
-     Web Collection #3
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-sources">
-     Data Sources
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-analysis">
-   Data Analysis
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#insights">
-     Insights
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#insight-1-explanation">
-       Insight 1 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#insight-2-explanation">
-       Insight 2 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#insight-3-explanation">
-       Insight 3 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#insight-4-explanation">
-       Insight 4 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#insight-5-explanation">
-       Insight 5 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#extra-insight-explanation">
-       Extra Insight Explanation
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-visualizations">
-     Data Visualizations
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualization-1-explanation">
-       Visualization 1 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualization-2-explanation">
-       Visualization 2 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualization-3-explanation">
-       Visualization 3 Explanation
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary-files">
-   Summary Files
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cited-sources">
-   Cited Sources
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#video-presentation">
-   Video Presentation
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Data Cleaning and Visualization Project</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-collection-and-cleaning">
-   Data Collection and Cleaning
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#web-collection-1">
-     Web Collection #1
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#web-collection-2">
-     Web Collection #2
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#web-collection-3">
-     Web Collection #3
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-sources">
-     Data Sources
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-analysis">
-   Data Analysis
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#insights">
-     Insights
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#insight-1-explanation">
-       Insight 1 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#insight-2-explanation">
-       Insight 2 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#insight-3-explanation">
-       Insight 3 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#insight-4-explanation">
-       Insight 4 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#insight-5-explanation">
-       Insight 5 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#extra-insight-explanation">
-       Extra Insight Explanation
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-visualizations">
-     Data Visualizations
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualization-1-explanation">
-       Visualization 1 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualization-2-explanation">
-       Visualization 2 Explanation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualization-3-explanation">
-       Visualization 3 Explanation
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary-files">
-   Summary Files
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cited-sources">
-   Cited Sources
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#video-presentation">
-   Video Presentation
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Cleaning and Visualization Project</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-collection-and-cleaning">Data Collection and Cleaning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-collection-1">Web Collection #1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-collection-2">Web Collection #2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-collection-3">Web Collection #3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sources">Data Sources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-analysis">Data Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insights">Insights</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-1-explanation">Insight 1 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-2-explanation">Insight 2 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-3-explanation">Insight 3 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-4-explanation">Insight 4 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-5-explanation">Insight 5 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-insight-explanation">Extra Insight Explanation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualizations">Data Visualizations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-1-explanation">Visualization 1 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-2-explanation">Visualization 2 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-3-explanation">Visualization 3 Explanation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-files">Summary Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cited-sources">Cited Sources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#video-presentation">Video Presentation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="data-cleaning-and-visualization-project">
-<h1>Data Cleaning and Visualization Project<a class="headerlink" href="#data-cleaning-and-visualization-project" title="Permalink to this headline">#</a></h1>
+<h1>Data Cleaning and Visualization Project<a class="headerlink" href="#data-cleaning-and-visualization-project" title="Link to this heading">#</a></h1>
 <p>This project involved collecting datasets from various sources, cleaning and formatting them in order for them to be analyzed, and then creating visualizations with Python to gain a better understanding of the data. After the data was collected, it was scraped and cleaned, and then analyzed using a variety of methods. Finally, the data was visualized using Plotly and the visualizations were used to gain further insights into the data.</p>
 <section id="data-collection-and-cleaning">
-<h2>Data Collection and Cleaning<a class="headerlink" href="#data-collection-and-cleaning" title="Permalink to this headline">#</a></h2>
+<h2>Data Collection and Cleaning<a class="headerlink" href="#data-collection-and-cleaning" title="Link to this heading">#</a></h2>
 <p>Transfer/update the data collection and cleaning you created for Phase II below. You may include additional cleaning functions if you have extra datasets. If no changes are necessary, simply copy and paste your phase II parsing/cleaning functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -596,7 +440,7 @@ title="Print to PDF"
 </div>
 </div>
 <section id="web-collection-1">
-<h3>Web Collection #1<a class="headerlink" href="#web-collection-1" title="Permalink to this headline">#</a></h3>
+<h3>Web Collection #1<a class="headerlink" href="#web-collection-1" title="Link to this heading">#</a></h3>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">html_parser</span><span class="p">(</span><span class="n">url_list</span><span class="p">):</span>
@@ -1485,10 +1329,22 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">malaria_df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span> <span class="o">=</span> <span class="s2">&quot;Malaria&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">cancer_df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span> <span class="o">=</span> <span class="s2">&quot;Skin Cancer&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">writer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="ne">AttributeError</span>: &#39;OpenpyxlWriter&#39; object has no attribute &#39;save&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="web-collection-2">
-<h3>Web Collection #2<a class="headerlink" href="#web-collection-2" title="Permalink to this headline">#</a></h3>
+<h3>Web Collection #2<a class="headerlink" href="#web-collection-2" title="Link to this heading">#</a></h3>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extra</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
@@ -1922,7 +1778,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="web-collection-3">
-<h3>Web Collection #3<a class="headerlink" href="#web-collection-3" title="Permalink to this headline">#</a></h3>
+<h3>Web Collection #3<a class="headerlink" href="#web-collection-3" title="Link to this heading">#</a></h3>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;api_dict.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -2923,22 +2779,22 @@ title="Print to PDF"
 </div>
 </section>
 <section id="data-sources">
-<h3>Data Sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">#</a></h3>
+<h3>Data Sources<a class="headerlink" href="#data-sources" title="Link to this heading">#</a></h3>
 <p>Sources to our datasets.</p>
 <ul class="simple">
 <li><p>Web Collection #1 Source (HTML): <a class="reference external" href="https://www.worldlifeexpectancy.com/world-health-rankings">https://www.worldlifeexpectancy.com/world-health-rankings</a></p></li>
-<li><p>Web Collection #2 Source (CSV): <a class="reference external" href="https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/export/?disjunctive.cou_name_en&amp;sort=name">https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/export/?disjunctive.cou_name_en&amp;sort=name</a></p></li>
-<li><p>Web Collection #3 Source (API): <a class="reference external" href="https://api.open-meteo.com/v1/forecast?latitude=%7Blatitudue%7D&amp;longitude=%7Blongitude%7D&amp;daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,shortwave_radiation_sum&amp;timezone=auto&amp;past_days=92">https://api.open-meteo.com/v1/forecast?latitude={latitudue}&amp;longitude={longitude}&amp;daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,shortwave_radiation_sum&amp;timezone=auto&amp;past_days=92</a></p></li>
+<li><p>Web Collection #2 Source (CSV): <a class="reference external" href="https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/export/?disjunctive.cou_name_en&amp;amp;sort=name">https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/export/?disjunctive.cou_name_en&amp;sort=name</a></p></li>
+<li><p>Web Collection #3 Source (API): <a class="reference external" href="https://api.open-meteo.com/v1/forecast?latitude=%7Blatitudue%7D&amp;amp;longitude=%7Blongitude%7D&amp;amp;daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,shortwave_radiation_sum&amp;amp;timezone=auto&amp;amp;past_days=92">https://api.open-meteo.com/v1/forecast?latitude={latitudue}&amp;longitude={longitude}&amp;daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,shortwave_radiation_sum&amp;timezone=auto&amp;past_days=92</a></p></li>
 <li><p>Extra Web Collection Source (HTML): <a class="reference external" href="https://sustainablesources.com/resources/country-abbreviations/">https://sustainablesources.com/resources/country-abbreviations/</a></p></li>
 </ul>
 </section>
 </section>
 <section id="data-analysis">
-<h2>Data Analysis<a class="headerlink" href="#data-analysis" title="Permalink to this headline">#</a></h2>
+<h2>Data Analysis<a class="headerlink" href="#data-analysis" title="Link to this heading">#</a></h2>
 <section id="insights">
-<h3>Insights<a class="headerlink" href="#insights" title="Permalink to this headline">#</a></h3>
+<h3>Insights<a class="headerlink" href="#insights" title="Link to this heading">#</a></h3>
 <section id="insight-1-explanation">
-<h4>Insight 1 Explanation<a class="headerlink" href="#insight-1-explanation" title="Permalink to this headline">#</a></h4>
+<h4>Insight 1 Explanation<a class="headerlink" href="#insight-1-explanation" title="Link to this heading">#</a></h4>
 <p>For the first insight, we wanted to check which countries have the highest short-wave radiation and highest skin cancer rates to check if there is a correlation between these two variables. For the code, we first read the ‘avg_api.json’, and the skin cancer sheet from the ‘Diseases.xlsx’ excel file. Then, we created separate lists of the countries with the ten highest shortwave radiation sum and the highest skin cancer rates. Finally, we compared the two lists to find which countries have both high shortwave radiation sum and high skin cancer rates. The overlapping countries between these lists were Malawi and Namibia which demonstrates that there is a correlation between countries having high shortwave radiation and skin cancer rates.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2987,7 +2843,7 @@ Countries in common: [&#39;Malawi&#39;, &#39;Namibia&#39;]
 </div>
 </section>
 <section id="insight-2-explanation">
-<h4>Insight 2 Explanation<a class="headerlink" href="#insight-2-explanation" title="Permalink to this headline">#</a></h4>
+<h4>Insight 2 Explanation<a class="headerlink" href="#insight-2-explanation" title="Link to this heading">#</a></h4>
 <p>For the second insight, we wanted to check if the countries that have the highest temperatures were the same as the ones that have the least precipitation as there is a lot of debate on whether precipitation relates to lower temperatures. For this code, we loaded the avg API JSON file into the variable data and then created a list of tuples with each country, its maximum temperature, and its precipitation sum. Then we created 2 dictionaries: one with the temperatures for each country, and one with the precipitation. We turned each dictionary into a data frame and joined them together. Then, we found the difference between temperature and precipitation to see if there were major differences. When the difference column for a country shows a larger number, greater than 30, for example, it means the temperature rate is way higher than the precipitation rate, which shows that these countries have low precipitation and high temperatures.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3121,7 +2977,7 @@ Countries in common: [&#39;Malawi&#39;, &#39;Namibia&#39;]
 </div>
 </section>
 <section id="insight-3-explanation">
-<h4>Insight 3 Explanation<a class="headerlink" href="#insight-3-explanation" title="Permalink to this headline">#</a></h4>
+<h4>Insight 3 Explanation<a class="headerlink" href="#insight-3-explanation" title="Link to this heading">#</a></h4>
 <p>For the third insight, we wanted to check if countries near the equator, which have latitudes close to 0, are related to having higher kidney disease rates. We first read two datasets, the clean countries CSV and the kidney disease sheet from the excel file. Then we created two separate lists containing the countries near the equator and countries far from the equator respectively. We then created A third and fourth list which contains the country and its kidney disease rate for the countries in the close countries list and the countries in the far countries list. Finally, we calculated the average kidney disease rates for these countries. The results show that the average kidney disease rate for countries near the Equator is almost 32%, while for countries far from the Equator, it’s around 4%. This shows that countries located near the Equator have a higher kidney disease rate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3170,7 +3026,7 @@ Countries far from the equator:              Avg. Kidney Disease Rate: 4.03
 </div>
 </section>
 <section id="insight-4-explanation">
-<h4>Insight 4 Explanation<a class="headerlink" href="#insight-4-explanation" title="Permalink to this headline">#</a></h4>
+<h4>Insight 4 Explanation<a class="headerlink" href="#insight-4-explanation" title="Link to this heading">#</a></h4>
 <p>For this insight, we wanted to find how many people were affected with malaria disease in each country, and subsequently the percentage by country of the total people affected with the disease. For the code, we first read the clean countries CSV and the malaria sheet from the excel file. Then, we created a dictionary in which each key is a country and each value is a tuple containing the malaria rate and population, skipping the country if the rate was zero, as this wouldn’t give us any important information. Afterward, we converted the dictionary into a list of tuples, removing all countries with nan population, and then sorted the data by malaria rate from highest to lowest. We put this into a data frame and then calculated the number of people affected by malaria in each country, and the percentage of the total affected people for each country. We found that the percentage of people affected proportionally is really high in some countries that have a lower malaria disease rate. For example, in the top 1 country with a malaria rate of 61, Sierra Leone, only 1.52% of people were affected, whereas in Nigeria, with a malaria rate of 34, 27% of people were affected.</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
@@ -3644,7 +3500,7 @@ Countries far from the equator:              Avg. Kidney Disease Rate: 4.03
 </div>
 </section>
 <section id="insight-5-explanation">
-<h4>Insight 5 Explanation<a class="headerlink" href="#insight-5-explanation" title="Permalink to this headline">#</a></h4>
+<h4>Insight 5 Explanation<a class="headerlink" href="#insight-5-explanation" title="Link to this heading">#</a></h4>
 <p>For the fifth insight, we wanted to know what are the kidney disease rates of the countries that have dusty air conditions and sandstorms to check if this affects kidney disease rates. This code creates a data frame that contains the average Kidney Disease rate for countries with weather codes between 6 and 9 and 30 and 35 (which represent dusty air conditions). The function ‘rate()’ is a helper function that assigns a label to the Kidney Disease rate based on its value: high, medium, or low. With the function ‘insight5()’ we then created a dataframe from the data loaded from the ‘avg_api’ JSON file and the kidney disease sheet from the excel, filtering out countries with the desired weather code, and creating a new column ‘Evaluation’ which assigns the label to each Kidney Disease rate. We can see that countries with dusty air conditions and sandstorms such as Nicaragua, Pakistan, and Ecuador also have very high kidney disease rates, above 35. However, some of the countries with these weather codes do not have high kidney disease rates such as Tajikistan’, ‘Italy’, and ‘Hungary with kidney disease rates between 3 and 8.</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
@@ -3794,7 +3650,7 @@ Countries far from the equator:              Avg. Kidney Disease Rate: 4.03
 </div>
 </section>
 <section id="extra-insight-explanation">
-<h4>Extra Insight Explanation<a class="headerlink" href="#extra-insight-explanation" title="Permalink to this headline">#</a></h4>
+<h4>Extra Insight Explanation<a class="headerlink" href="#extra-insight-explanation" title="Link to this heading">#</a></h4>
 <p>We wanted to find which country or countries are in the top twenty for at least two diseases. We first read the excel file to extract the top 20 countries from three sheets: Kidney Disease, Malaria, and Skin Cancer. Then, we stored them in three different lists: top20_kd, top20_m, and top20_sc respectively. Finally, we iterated through each list and compared them to the other lists to find any countries that appear in at least 2 lists. In our common list, we can see that six countries overlap between the top20_kd, top20_m, and top20_sc lists. These countries are ‘Angola’, ‘Lesotho’, ‘Malawi’, ‘Mozambique’, ‘Swaziland’, and ‘Togo’.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3837,7 +3693,7 @@ Countries far from the equator:              Avg. Kidney Disease Rate: 4.03
 </section>
 </section>
 <section id="data-visualizations">
-<h3>Data Visualizations<a class="headerlink" href="#data-visualizations" title="Permalink to this headline">#</a></h3>
+<h3>Data Visualizations<a class="headerlink" href="#data-visualizations" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">visual1</span><span class="p">():</span>
@@ -3875,11 +3731,11 @@ Countries far from the equator:              Avg. Kidney Disease Rate: 4.03
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Collection&amp;Cleaning_32_0.png" src="../_images/Collection&amp;Cleaning_32_0.png" />
+<img alt="../_images/04154059e9990459678f11588d7d2b53ec5dc3542ee95b8fcf324997ba288266.png" src="../_images/04154059e9990459678f11588d7d2b53ec5dc3542ee95b8fcf324997ba288266.png" />
 </div>
 </div>
 <section id="visualization-1-explanation">
-<h4>Visualization 1 Explanation<a class="headerlink" href="#visualization-1-explanation" title="Permalink to this headline">#</a></h4>
+<h4>Visualization 1 Explanation<a class="headerlink" href="#visualization-1-explanation" title="Link to this heading">#</a></h4>
 <p>This code is responsible for showing a map of the average shortwave radiation sum per country. We first read the ‘clean_countries.csv’, and the ‘avg_api.json’ file. Then, we created a list of tuples using the data from the JSON file, containing the country, and its shortwave radiation sum. Then, we stored this information in the swr data frame. Afterward, we joined the swr data frame with the clean countries data frame and created a density map from the data using plotly’s library, px.density_mapbox(), using the coordinates and the shortwave radiation sum per country.</p>
 <p>We wanted to do this to have a visual of the highest shortwave radiation countries. By the side of the graph we can see the radiation bar which represents the levels of shortwave radiation and the colors that represent each range of radiation on top of the map. Countries with the highest shortwave radiation are covered by yellow, orange color. Countries with average radiation rates are colores in a burgundy color and the ones with low radiation rates are colored in purple or blue. With this visualization we can see that that countries near the Equator have higher shortwave radiation. We can also notice that most of Africa and countries in Eastern Europe and the Middle East also have high radiation rates.</p>
 <div class="cell docutils container">
@@ -3929,12 +3785,12 @@ Countries far from the equator:              Avg. Kidney Disease Rate: 4.03
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Collection&amp;Cleaning_34_0.png" src="../_images/Collection&amp;Cleaning_34_0.png" />
+<img alt="../_images/0c5d83406847439ce75b5ccc037b3000cc1ce27a03c9631a5568bcca2988549d.png" src="../_images/0c5d83406847439ce75b5ccc037b3000cc1ce27a03c9631a5568bcca2988549d.png" />
 </div>
 </div>
 </section>
 <section id="visualization-2-explanation">
-<h4>Visualization 2 Explanation<a class="headerlink" href="#visualization-2-explanation" title="Permalink to this headline">#</a></h4>
+<h4>Visualization 2 Explanation<a class="headerlink" href="#visualization-2-explanation" title="Link to this heading">#</a></h4>
 <p>For our second visualization, we wanted a visual that showed the top 100 countries with higher kidney disease, malaria, and skin cancer rates. The size of the population of each country is symbolized by the size of the circles. The bigger the circle, the more population. With this graph, we can see which countries have higher rates of each of the diseases. For example, we can see that Swaziland has a low Skin Cancer and kidney disease rate, and a high malaria rate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4006,18 +3862,18 @@ Countries far from the equator:              Avg. Kidney Disease Rate: 4.03
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Collection&amp;Cleaning_36_0.png" src="../_images/Collection&amp;Cleaning_36_0.png" />
+<img alt="../_images/511fd38d4460b65a75386a01541373e71925aa02e23892ec57100c5314d314ca.png" src="../_images/511fd38d4460b65a75386a01541373e71925aa02e23892ec57100c5314d314ca.png" />
 </div>
 </div>
 </section>
 <section id="visualization-3-explanation">
-<h4>Visualization 3 Explanation<a class="headerlink" href="#visualization-3-explanation" title="Permalink to this headline">#</a></h4>
+<h4>Visualization 3 Explanation<a class="headerlink" href="#visualization-3-explanation" title="Link to this heading">#</a></h4>
 <p>For our third visualization, we wanted to bring everything together. Hence, we created a Scatterplot Matrix between all the information. For the rows, we have Malaria Rate, Skin Cancer Rate, Population rate, Max temperature, Radiation, and precipitation. For the columns, we have the Kidney disease, malaria, and skin cancer rates, the population, and max temperatures. We can compare how each of the rows behaves with each of the columns. For example, we can see the graph of max temperature and radiation. With higher radiation, we can see the max temperature is higher. This visualization helps us picture the relationship between everything we have analyzed during this project.</p>
 </section>
 </section>
 </section>
 <section id="summary-files">
-<h2>Summary Files<a class="headerlink" href="#summary-files" title="Permalink to this headline">#</a></h2>
+<h2>Summary Files<a class="headerlink" href="#summary-files" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">risk</span><span class="p">(</span><span class="n">kdrate</span><span class="p">,</span> <span class="n">mrate</span><span class="p">,</span> <span class="n">scrate</span><span class="p">):</span>
@@ -4340,7 +4196,7 @@ Countries far from the equator:              Avg. Kidney Disease Rate: 4.03
 </div>
 </section>
 <section id="cited-sources">
-<h2>Cited Sources<a class="headerlink" href="#cited-sources" title="Permalink to this headline">#</a></h2>
+<h2>Cited Sources<a class="headerlink" href="#cited-sources" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://plotly.com/python/mapbox-density-heatmaps/">https://plotly.com/python/mapbox-density-heatmaps/</a></p></li>
 <li><p><a class="reference external" href="https://plotly.com/python/3d-scatter-plots/">https://plotly.com/python/3d-scatter-plots/</a></p></li>
@@ -4348,7 +4204,7 @@ Countries far from the equator:              Avg. Kidney Disease Rate: 4.03
 </ul>
 </section>
 <section id="video-presentation">
-<h2>Video Presentation<a class="headerlink" href="#video-presentation" title="Permalink to this headline">#</a></h2>
+<h2>Video Presentation<a class="headerlink" href="#video-presentation" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Video Presentation Link: <a class="reference external" href="https://youtu.be/PqXEHN0grTg">https://youtu.be/PqXEHN0grTg</a></p></li>
 </ul>
@@ -4375,50 +4231,130 @@ Countries far from the equator:              Avg. Kidney Disease Rate: 4.03
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome to my personal portfolio!</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ISYE3030.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exploring the Relationship Between Gender and Wages</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="Lab01.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="Lab01.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Web Development Project</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-collection-and-cleaning">Data Collection and Cleaning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-collection-1">Web Collection #1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-collection-2">Web Collection #2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-collection-3">Web Collection #3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sources">Data Sources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-analysis">Data Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insights">Insights</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-1-explanation">Insight 1 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-2-explanation">Insight 2 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-3-explanation">Insight 3 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-4-explanation">Insight 4 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-5-explanation">Insight 5 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-insight-explanation">Extra Insight Explanation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualizations">Data Visualizations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-1-explanation">Visualization 1 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-2-explanation">Visualization 2 Explanation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-3-explanation">Visualization 3 Explanation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-files">Summary Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cited-sources">Cited Sources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#video-presentation">Video Presentation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Raquel Ovadia<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Raquel Ovadia
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
