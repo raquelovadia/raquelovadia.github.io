@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Data Cleaning and Visualization Project" href="Collection%26Cleaning.html" />
-    <link rel="prev" title="EDA of Yahoo Stock Price Prediction" href="ISYE4031.html" />
+    <link rel="prev" title="Nucleic Acid Folding Project" href="ISYE3133.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,7 +175,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to my personal portfolio!
+                    Welcome to my Personal Portfolio!
                 </a>
             </li>
         </ul>
@@ -183,6 +183,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="CX4240.html">Optimal Spanish Keyboard</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ISYE4031.html">EDA of Yahoo Stock Price Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISYE3133.html">Nucleic Acid Folding Project</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Exploring the Relationship Between Gender and Wages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Collection%26Cleaning.html">Data Cleaning and Visualization Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Lab01.html">Web Development Project</a></li>
@@ -227,53 +228,6 @@
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/raquelovadia/raquelovadia.github.io" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/raquelovadia/raquelovadia.github.io/issues/new?title=Issue%20on%20page%20%2Fdocs/ISYE3030.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -382,6 +336,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-report">Final Report</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">Code</a></li>
 </ul>
             </nav>
         </div>
@@ -410,6 +365,694 @@ document.write(`
             
         ></iframe>
         </div></div>
+</div>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;SalaryData.csv&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Education Level</th>
+      <th>Job Title</th>
+      <th>Years of Experience</th>
+      <th>Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>32.0</td>
+      <td>Male</td>
+      <td>Bachelor's</td>
+      <td>Software Engineer</td>
+      <td>5.0</td>
+      <td>90000.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>28.0</td>
+      <td>Female</td>
+      <td>Master's</td>
+      <td>Data Analyst</td>
+      <td>3.0</td>
+      <td>65000.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>45.0</td>
+      <td>Male</td>
+      <td>PhD</td>
+      <td>Senior Manager</td>
+      <td>15.0</td>
+      <td>150000.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>36.0</td>
+      <td>Female</td>
+      <td>Bachelor's</td>
+      <td>Sales Associate</td>
+      <td>7.0</td>
+      <td>60000.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>52.0</td>
+      <td>Male</td>
+      <td>Master's</td>
+      <td>Director</td>
+      <td>20.0</td>
+      <td>200000.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>370</th>
+      <td>35.0</td>
+      <td>Female</td>
+      <td>Bachelor's</td>
+      <td>Senior Marketing Analyst</td>
+      <td>8.0</td>
+      <td>85000.0</td>
+    </tr>
+    <tr>
+      <th>371</th>
+      <td>43.0</td>
+      <td>Male</td>
+      <td>Master's</td>
+      <td>Director of Operations</td>
+      <td>19.0</td>
+      <td>170000.0</td>
+    </tr>
+    <tr>
+      <th>372</th>
+      <td>29.0</td>
+      <td>Female</td>
+      <td>Bachelor's</td>
+      <td>Junior Project Manager</td>
+      <td>2.0</td>
+      <td>40000.0</td>
+    </tr>
+    <tr>
+      <th>373</th>
+      <td>34.0</td>
+      <td>Male</td>
+      <td>Bachelor's</td>
+      <td>Senior Operations Coordinator</td>
+      <td>7.0</td>
+      <td>90000.0</td>
+    </tr>
+    <tr>
+      <th>374</th>
+      <td>44.0</td>
+      <td>Female</td>
+      <td>PhD</td>
+      <td>Senior Business Analyst</td>
+      <td>15.0</td>
+      <td>150000.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>373 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Job Title&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Female&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Male&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Education Level&#39;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;Bachelor&#39;s&quot;</span><span class="p">,</span> <span class="s1">&#39;Education Level&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Education Level&#39;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;Master&#39;s&quot;</span><span class="p">,</span> <span class="s1">&#39;Education Level&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Education Level&#39;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;PhD&quot;</span><span class="p">,</span> <span class="s1">&#39;Education Level&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Education Level</th>
+      <th>Years of Experience</th>
+      <th>Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>32</td>
+      <td>1</td>
+      <td>1</td>
+      <td>5.0</td>
+      <td>90000.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>28</td>
+      <td>0</td>
+      <td>2</td>
+      <td>3.0</td>
+      <td>65000.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>45</td>
+      <td>1</td>
+      <td>3</td>
+      <td>15.0</td>
+      <td>150000.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>36</td>
+      <td>0</td>
+      <td>1</td>
+      <td>7.0</td>
+      <td>60000.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>52</td>
+      <td>1</td>
+      <td>2</td>
+      <td>20.0</td>
+      <td>200000.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>370</th>
+      <td>35</td>
+      <td>0</td>
+      <td>1</td>
+      <td>8.0</td>
+      <td>85000.0</td>
+    </tr>
+    <tr>
+      <th>371</th>
+      <td>43</td>
+      <td>1</td>
+      <td>2</td>
+      <td>19.0</td>
+      <td>170000.0</td>
+    </tr>
+    <tr>
+      <th>372</th>
+      <td>29</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>40000.0</td>
+    </tr>
+    <tr>
+      <th>373</th>
+      <td>34</td>
+      <td>1</td>
+      <td>1</td>
+      <td>7.0</td>
+      <td>90000.0</td>
+    </tr>
+    <tr>
+      <th>374</th>
+      <td>44</td>
+      <td>0</td>
+      <td>3</td>
+      <td>15.0</td>
+      <td>150000.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>373 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Education Level</th>
+      <th>Years of Experience</th>
+      <th>Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>32</td>
+      <td>Male</td>
+      <td>Bachelor's</td>
+      <td>5.0</td>
+      <td>90000.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>28</td>
+      <td>Female</td>
+      <td>Master's</td>
+      <td>3.0</td>
+      <td>65000.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>45</td>
+      <td>Male</td>
+      <td>PhD</td>
+      <td>15.0</td>
+      <td>150000.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>36</td>
+      <td>Female</td>
+      <td>Bachelor's</td>
+      <td>7.0</td>
+      <td>60000.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>52</td>
+      <td>Male</td>
+      <td>Master's</td>
+      <td>20.0</td>
+      <td>200000.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>370</th>
+      <td>35</td>
+      <td>Female</td>
+      <td>Bachelor's</td>
+      <td>8.0</td>
+      <td>85000.0</td>
+    </tr>
+    <tr>
+      <th>371</th>
+      <td>43</td>
+      <td>Male</td>
+      <td>Master's</td>
+      <td>19.0</td>
+      <td>170000.0</td>
+    </tr>
+    <tr>
+      <th>372</th>
+      <td>29</td>
+      <td>Female</td>
+      <td>Bachelor's</td>
+      <td>2.0</td>
+      <td>40000.0</td>
+    </tr>
+    <tr>
+      <th>373</th>
+      <td>34</td>
+      <td>Male</td>
+      <td>Bachelor's</td>
+      <td>7.0</td>
+      <td>90000.0</td>
+    </tr>
+    <tr>
+      <th>374</th>
+      <td>44</td>
+      <td>Female</td>
+      <td>PhD</td>
+      <td>15.0</td>
+      <td>150000.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>373 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Gender&#39;</span><span class="p">)[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">age</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>179.0</td>
+      <td>37.581006</td>
+      <td>6.992603</td>
+      <td>23.0</td>
+      <td>31.0</td>
+      <td>38.0</td>
+      <td>42.5</td>
+      <td>52.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>194.0</td>
+      <td>37.293814</td>
+      <td>7.154205</td>
+      <td>24.0</td>
+      <td>32.0</td>
+      <td>36.0</td>
+      <td>44.0</td>
+      <td>53.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Gender&#39;</span><span class="p">)[</span><span class="s1">&#39;Years of Experience&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">exp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>179.0</td>
+      <td>10.011173</td>
+      <td>6.341843</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>10.0</td>
+      <td>15.0</td>
+      <td>25.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>194.0</td>
+      <td>10.048969</td>
+      <td>6.765803</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>8.5</td>
+      <td>16.0</td>
+      <td>25.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">salary</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Gender&#39;</span><span class="p">)[</span><span class="s1">&#39;Salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">salary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>179.0</td>
+      <td>97011.173184</td>
+      <td>45916.141054</td>
+      <td>35000.0</td>
+      <td>50000.0</td>
+      <td>90000.0</td>
+      <td>140000.0</td>
+      <td>190000.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>194.0</td>
+      <td>103867.783505</td>
+      <td>50182.461438</td>
+      <td>350.0</td>
+      <td>60000.0</td>
+      <td>97500.0</td>
+      <td>140000.0</td>
+      <td>250000.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelWriter</span><span class="p">(</span><span class="s1">&#39;clean.xlsx&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>  
+    <span class="n">data</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span> <span class="o">=</span> <span class="s2">&quot;Data Set&quot;</span><span class="p">)</span>
+    <span class="n">age</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span> <span class="o">=</span> <span class="s2">&quot;Age Stats&quot;</span><span class="p">)</span>
+    <span class="n">exp</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span> <span class="o">=</span> <span class="s2">&quot;Experience (yrs) Stats&quot;</span><span class="p">)</span>
+    <span class="n">salary</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span> <span class="o">=</span> <span class="s2">&quot;Salary Stats&quot;</span><span class="p">)</span>
+
+<span class="c1"># data.to_csv(&#39;clean_df.csv&#39;)</span>
+<span class="c1"># print(&quot;done&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Years of Experience&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;Gender&#39;</span> <span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Years of Experience by Age&#39;</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">800</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/95312e3109f4a93c6f463cce5303fd98bf9ada93b53d63a395ab7c2ddf999d88.png" src="../_images/95312e3109f4a93c6f463cce5303fd98bf9ada93b53d63a395ab7c2ddf999d88.png" />
+</div>
+</div>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Salary&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Salary Distribution by Gender&quot;</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">800</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/8c029e1a827fd64f2cf676e6e1c88476850ec81ed610bedec1a4deba49b7e2b8.png" src="../_images/8c029e1a827fd64f2cf676e6e1c88476850ec81ed610bedec1a4deba49b7e2b8.png" />
+</div>
+</div>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Education Level&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Salary&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Salary Distribution by Education Level&quot;</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">800</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/244edadadd12793eb1555536bf64627ec4d7ff480f2a8d5e128147e7137e7f52.png" src="../_images/244edadadd12793eb1555536bf64627ec4d7ff480f2a8d5e128147e7137e7f52.png" />
+</div>
 </div>
 </section>
 </section>
@@ -445,12 +1088,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ISYE4031.html"
+       href="ISYE3133.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">EDA of Yahoo Stock Price Prediction</p>
+        <p class="prev-next-title">Nucleic Acid Folding Project</p>
       </div>
     </a>
     <a class="right-next"
@@ -479,6 +1122,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-report">Final Report</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">Code</a></li>
 </ul>
   </nav></div>
 
@@ -503,7 +1147,7 @@ By Raquel Ovadia
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

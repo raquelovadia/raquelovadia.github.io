@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="EDA of Yahoo Stock Price Prediction" href="ISYE4031.html" />
-    <link rel="prev" title="Welcome to my personal portfolio!" href="intro.html" />
+    <link rel="prev" title="Welcome to my Personal Portfolio!" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,7 +175,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to my personal portfolio!
+                    Welcome to my Personal Portfolio!
                 </a>
             </li>
         </ul>
@@ -183,6 +183,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Optimal Spanish Keyboard</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ISYE4031.html">EDA of Yahoo Stock Price Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISYE3133.html">Nucleic Acid Folding Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ISYE3030.html">Exploring the Relationship Between Gender and Wages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Collection%26Cleaning.html">Data Cleaning and Visualization Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Lab01.html">Web Development Project</a></li>
@@ -227,53 +228,6 @@
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/raquelovadia/raquelovadia.github.io" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/raquelovadia/raquelovadia.github.io/issues/new?title=Issue%20on%20page%20%2Fdocs/CX4240.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -382,6 +336,24 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-report">Final Report</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">Appendix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#term-frequencies">Term Frequencies</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-document-frequencies">Inverse Document Frequencies</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-matrix">TF-IDF Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#character-importance">Character importance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#most-common-bigrams">Most common bigrams</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#genetic-algorithm">Genetic Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">Data Preprocessing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data">Import Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#genetic-algorithm-implementation-auxiliary-functions">Genetic Algorithm implementation - auxiliary functions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#class-geneticalgorithmoptimizer-for-grid-search-hyper-parameter-tuning">Class GeneticAlgorithmOptimizer for grid search (hyper parameter tuning)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -411,6 +383,1999 @@ document.write(`
         ></iframe>
         </div></div>
 </div>
+</section>
+<section id="appendix">
+<h2>Appendix<a class="headerlink" href="#appendix" title="Link to this heading">#</a></h2>
+<section id="tf-idf">
+<h3>TF-IDF<a class="headerlink" href="#tf-idf" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">characters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">chr</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">97</span><span class="p">,</span> <span class="mi">111</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;ñ&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">chr</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="mi">123</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;´&#39;</span><span class="p">]</span>  <span class="c1"># a-m, ñ, n-z, ., ,, ´</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;spanish_billion_words10000.csv&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
+  <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;.&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Source Wikisource librodot com SENTIDO Y SENSI...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>La familia Dashwood llevaba largo tiempo afinc...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Su propiedad era de buen tamaño y en el centro...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>El último dueño de esta propiedad había sido u...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Pero la muerte de ella ocurrida diez años ante...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9995</th>
+      <td>Ha conocido usted a alguien así Ha amado a alg...</td>
+    </tr>
+    <tr>
+      <th>9996</th>
+      <td>Amo ahora a una persona así.</td>
+    </tr>
+    <tr>
+      <th>9997</th>
+      <td>Pero antes que a mí no ha amado a nadie que en...</td>
+    </tr>
+    <tr>
+      <th>9998</th>
+      <td>Jane nunca he hallado a nadie como tú.</td>
+    </tr>
+    <tr>
+      <th>9999</th>
+      <td>Nadie me ha sometido nadie ha influido tan dul...</td>
+    </tr>
+  </tbody>
+</table>
+<p>10000 rows × 1 columns</p>
+</div></div></div>
+</div>
+<section id="term-frequencies">
+<h4>Term Frequencies<a class="headerlink" href="#term-frequencies" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">characters</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">split_accent</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+    <span class="n">accents_mapping</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;á&#39;</span><span class="p">:</span> <span class="s1">&#39;´a&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;é&#39;</span><span class="p">:</span> <span class="s1">&#39;´e&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;í&#39;</span><span class="p">:</span> <span class="s1">&#39;´i&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ó&#39;</span><span class="p">:</span> <span class="s1">&#39;´o&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ú&#39;</span><span class="p">:</span> <span class="s1">&#39;´u&#39;</span><span class="p">,}</span>
+
+    <span class="k">for</span> <span class="n">accented_char</span><span class="p">,</span> <span class="n">replacement</span> <span class="ow">in</span> <span class="n">accents_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">sentence</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">accented_char</span><span class="p">,</span> <span class="n">replacement</span><span class="p">)</span>
+        <span class="n">sentence</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sentence</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">sentence</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">count_chars</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+    <span class="n">sentence</span> <span class="o">=</span> <span class="n">split_accent</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="n">char</span><span class="p">:</span> <span class="n">sentence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">sentence</span><span class="p">)}</span>
+    <span class="k">return</span> <span class="n">counts</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]):</span>
+    <span class="n">char_counts</span> <span class="o">=</span> <span class="n">count_chars</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">char</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">char_counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">characters</span><span class="p">:</span>
+            <span class="n">tf_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">char</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Doc</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="inverse-document-frequencies">
+<h4>Inverse Document Frequencies<a class="headerlink" href="#inverse-document-frequencies" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">idf_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">characters</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">characters</span><span class="p">:</span>
+    <span class="n">n_t</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">tf_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">char</span><span class="p">,</span> <span class="p">:]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">idf_series</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tf-idf-matrix">
+<h4>TF-IDF Matrix<a class="headerlink" href="#tf-idf-matrix" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf_idf_matrix</span> <span class="o">=</span> <span class="n">tf_df</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">idf_series</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf_idf_matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Doc1</th>
+      <th>Doc2</th>
+      <th>Doc3</th>
+      <th>Doc4</th>
+      <th>Doc5</th>
+      <th>Doc6</th>
+      <th>Doc7</th>
+      <th>Doc8</th>
+      <th>Doc9</th>
+      <th>Doc10</th>
+      <th>...</th>
+      <th>Doc9991</th>
+      <th>Doc9992</th>
+      <th>Doc9993</th>
+      <th>Doc9994</th>
+      <th>Doc9995</th>
+      <th>Doc9996</th>
+      <th>Doc9997</th>
+      <th>Doc9998</th>
+      <th>Doc9999</th>
+      <th>Doc10000</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>4.053957</td>
+      <td>10.134892</td>
+      <td>24.323742</td>
+      <td>25.337231</td>
+      <td>11.148382</td>
+      <td>22.296763</td>
+      <td>14.188849</td>
+      <td>2.026978</td>
+      <td>26.350720</td>
+      <td>8.107914</td>
+      <td>...</td>
+      <td>11.148382</td>
+      <td>17.229317</td>
+      <td>1.013489</td>
+      <td>18.242806</td>
+      <td>13.175360</td>
+      <td>11.148382</td>
+      <td>7.094425</td>
+      <td>12.161871</td>
+      <td>6.080935</td>
+      <td>6.080935</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>2.787767</td>
+      <td>1.393884</td>
+      <td>4.181651</td>
+      <td>2.787767</td>
+      <td>0.000000</td>
+      <td>2.787767</td>
+      <td>6.969418</td>
+      <td>0.000000</td>
+      <td>4.181651</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>2.787767</td>
+      <td>1.393884</td>
+      <td>0.000000</td>
+      <td>2.787767</td>
+      <td>1.393884</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>4.552853</td>
+      <td>1.138213</td>
+      <td>7.967493</td>
+      <td>4.552853</td>
+      <td>2.276427</td>
+      <td>4.552853</td>
+      <td>5.691066</td>
+      <td>3.414640</td>
+      <td>7.967493</td>
+      <td>1.138213</td>
+      <td>...</td>
+      <td>2.276427</td>
+      <td>9.105706</td>
+      <td>2.276427</td>
+      <td>10.243920</td>
+      <td>6.829280</td>
+      <td>2.276427</td>
+      <td>0.000000</td>
+      <td>3.414640</td>
+      <td>2.276427</td>
+      <td>3.414640</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>4.443679</td>
+      <td>3.332759</td>
+      <td>15.552878</td>
+      <td>12.220118</td>
+      <td>5.554599</td>
+      <td>9.998278</td>
+      <td>4.443679</td>
+      <td>2.221840</td>
+      <td>18.885637</td>
+      <td>4.443679</td>
+      <td>...</td>
+      <td>4.443679</td>
+      <td>7.776439</td>
+      <td>1.110920</td>
+      <td>11.109198</td>
+      <td>7.776439</td>
+      <td>5.554599</td>
+      <td>0.000000</td>
+      <td>4.443679</td>
+      <td>2.221840</td>
+      <td>5.554599</td>
+    </tr>
+    <tr>
+      <th>e</th>
+      <td>6.019229</td>
+      <td>4.012819</td>
+      <td>28.089735</td>
+      <td>20.064096</td>
+      <td>12.038458</td>
+      <td>21.067301</td>
+      <td>9.028843</td>
+      <td>7.022434</td>
+      <td>32.102554</td>
+      <td>9.028843</td>
+      <td>...</td>
+      <td>9.028843</td>
+      <td>19.060891</td>
+      <td>2.006410</td>
+      <td>20.064096</td>
+      <td>23.073711</td>
+      <td>6.019229</td>
+      <td>1.003205</td>
+      <td>8.025638</td>
+      <td>3.009614</td>
+      <td>8.025638</td>
+    </tr>
+    <tr>
+      <th>f</th>
+      <td>0.000000</td>
+      <td>3.919641</td>
+      <td>0.000000</td>
+      <td>1.959820</td>
+      <td>0.000000</td>
+      <td>3.919641</td>
+      <td>1.959820</td>
+      <td>1.959820</td>
+      <td>1.959820</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>1.959820</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>7.839281</td>
+      <td>1.959820</td>
+      <td>0.000000</td>
+      <td>1.959820</td>
+      <td>0.000000</td>
+      <td>1.959820</td>
+    </tr>
+    <tr>
+      <th>g</th>
+      <td>0.000000</td>
+      <td>1.590871</td>
+      <td>7.954356</td>
+      <td>1.590871</td>
+      <td>3.181742</td>
+      <td>1.590871</td>
+      <td>0.000000</td>
+      <td>1.590871</td>
+      <td>1.590871</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>3.181742</td>
+      <td>1.590871</td>
+      <td>0.000000</td>
+      <td>3.181742</td>
+      <td>3.181742</td>
+      <td>3.181742</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>h</th>
+      <td>0.000000</td>
+      <td>1.547763</td>
+      <td>3.095525</td>
+      <td>4.643288</td>
+      <td>1.547763</td>
+      <td>4.643288</td>
+      <td>1.547763</td>
+      <td>0.000000</td>
+      <td>4.643288</td>
+      <td>6.191050</td>
+      <td>...</td>
+      <td>1.547763</td>
+      <td>1.547763</td>
+      <td>1.547763</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>3.095525</td>
+      <td>1.547763</td>
+      <td>1.547763</td>
+      <td>3.095525</td>
+      <td>7.738813</td>
+    </tr>
+    <tr>
+      <th>i</th>
+      <td>9.485305</td>
+      <td>4.215691</td>
+      <td>9.485305</td>
+      <td>7.377460</td>
+      <td>3.161768</td>
+      <td>13.700996</td>
+      <td>7.377460</td>
+      <td>2.107846</td>
+      <td>14.754919</td>
+      <td>6.323537</td>
+      <td>...</td>
+      <td>4.215691</td>
+      <td>7.377460</td>
+      <td>1.053923</td>
+      <td>7.377460</td>
+      <td>8.431382</td>
+      <td>4.215691</td>
+      <td>1.053923</td>
+      <td>6.323537</td>
+      <td>1.053923</td>
+      <td>5.269614</td>
+    </tr>
+    <tr>
+      <th>j</th>
+      <td>2.087476</td>
+      <td>0.000000</td>
+      <td>2.087476</td>
+      <td>0.000000</td>
+      <td>2.087476</td>
+      <td>2.087476</td>
+      <td>2.087476</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>4.174951</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>2.087476</td>
+      <td>0.000000</td>
+      <td>2.087476</td>
+      <td>4.174951</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>2.087476</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td>5.483053</td>
+      <td>0.000000</td>
+      <td>5.483053</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>l</th>
+      <td>3.279279</td>
+      <td>5.465464</td>
+      <td>14.210207</td>
+      <td>5.465464</td>
+      <td>5.465464</td>
+      <td>10.930929</td>
+      <td>6.558557</td>
+      <td>3.279279</td>
+      <td>13.117114</td>
+      <td>2.186186</td>
+      <td>...</td>
+      <td>2.186186</td>
+      <td>3.279279</td>
+      <td>0.000000</td>
+      <td>6.558557</td>
+      <td>9.837836</td>
+      <td>3.279279</td>
+      <td>0.000000</td>
+      <td>1.093093</td>
+      <td>2.186186</td>
+      <td>3.279279</td>
+    </tr>
+    <tr>
+      <th>m</th>
+      <td>1.154067</td>
+      <td>2.308135</td>
+      <td>3.462202</td>
+      <td>6.924404</td>
+      <td>1.154067</td>
+      <td>4.616269</td>
+      <td>3.462202</td>
+      <td>1.154067</td>
+      <td>1.154067</td>
+      <td>2.308135</td>
+      <td>...</td>
+      <td>4.616269</td>
+      <td>1.154067</td>
+      <td>0.000000</td>
+      <td>6.924404</td>
+      <td>5.770337</td>
+      <td>2.308135</td>
+      <td>1.154067</td>
+      <td>2.308135</td>
+      <td>1.154067</td>
+      <td>4.616269</td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td>4.187928</td>
+      <td>2.093964</td>
+      <td>18.845676</td>
+      <td>10.469820</td>
+      <td>4.187928</td>
+      <td>13.610766</td>
+      <td>8.375856</td>
+      <td>2.093964</td>
+      <td>19.892658</td>
+      <td>6.281892</td>
+      <td>...</td>
+      <td>2.093964</td>
+      <td>9.422838</td>
+      <td>1.046982</td>
+      <td>13.610766</td>
+      <td>4.187928</td>
+      <td>3.140946</td>
+      <td>2.093964</td>
+      <td>9.422838</td>
+      <td>4.187928</td>
+      <td>5.234910</td>
+    </tr>
+    <tr>
+      <th>ñ</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>2.493534</td>
+      <td>4.987068</td>
+      <td>2.493534</td>
+      <td>2.493534</td>
+      <td>2.493534</td>
+      <td>0.000000</td>
+      <td>7.480603</td>
+      <td>2.493534</td>
+      <td>...</td>
+      <td>4.987068</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>o</th>
+      <td>7.112894</td>
+      <td>4.064511</td>
+      <td>17.274172</td>
+      <td>10.161278</td>
+      <td>7.112894</td>
+      <td>15.241916</td>
+      <td>12.193533</td>
+      <td>7.112894</td>
+      <td>25.403194</td>
+      <td>8.129022</td>
+      <td>...</td>
+      <td>8.129022</td>
+      <td>9.145150</td>
+      <td>3.048383</td>
+      <td>15.241916</td>
+      <td>11.177405</td>
+      <td>6.096767</td>
+      <td>3.048383</td>
+      <td>5.080639</td>
+      <td>3.048383</td>
+      <td>7.112894</td>
+    </tr>
+    <tr>
+      <th>p</th>
+      <td>1.257576</td>
+      <td>1.257576</td>
+      <td>6.287881</td>
+      <td>5.030305</td>
+      <td>2.515152</td>
+      <td>7.545457</td>
+      <td>2.515152</td>
+      <td>2.515152</td>
+      <td>5.030305</td>
+      <td>1.257576</td>
+      <td>...</td>
+      <td>2.515152</td>
+      <td>3.772729</td>
+      <td>1.257576</td>
+      <td>6.287881</td>
+      <td>5.030305</td>
+      <td>0.000000</td>
+      <td>1.257576</td>
+      <td>2.515152</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>q</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.540011</td>
+      <td>3.080022</td>
+      <td>1.540011</td>
+      <td>1.540011</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>4.620034</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>1.540011</td>
+      <td>1.540011</td>
+      <td>0.000000</td>
+      <td>3.080022</td>
+      <td>0.000000</td>
+      <td>1.540011</td>
+      <td>0.000000</td>
+      <td>3.080022</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>r</th>
+      <td>3.120267</td>
+      <td>1.040089</td>
+      <td>14.561246</td>
+      <td>8.320712</td>
+      <td>8.320712</td>
+      <td>13.521157</td>
+      <td>8.320712</td>
+      <td>1.040089</td>
+      <td>10.400890</td>
+      <td>6.240534</td>
+      <td>...</td>
+      <td>7.280623</td>
+      <td>13.521157</td>
+      <td>1.040089</td>
+      <td>11.440979</td>
+      <td>11.440979</td>
+      <td>1.040089</td>
+      <td>2.080178</td>
+      <td>5.200445</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>s</th>
+      <td>6.260551</td>
+      <td>4.173700</td>
+      <td>10.434251</td>
+      <td>7.303976</td>
+      <td>6.260551</td>
+      <td>11.477676</td>
+      <td>7.303976</td>
+      <td>3.130275</td>
+      <td>25.042203</td>
+      <td>7.303976</td>
+      <td>...</td>
+      <td>3.130275</td>
+      <td>5.217126</td>
+      <td>3.130275</td>
+      <td>15.651377</td>
+      <td>6.260551</td>
+      <td>2.086850</td>
+      <td>2.086850</td>
+      <td>1.043425</td>
+      <td>0.000000</td>
+      <td>2.086850</td>
+    </tr>
+    <tr>
+      <th>t</th>
+      <td>4.435644</td>
+      <td>1.108911</td>
+      <td>6.653465</td>
+      <td>7.762376</td>
+      <td>3.326733</td>
+      <td>6.653465</td>
+      <td>3.326733</td>
+      <td>2.217822</td>
+      <td>9.980198</td>
+      <td>5.544555</td>
+      <td>...</td>
+      <td>1.108911</td>
+      <td>5.544555</td>
+      <td>1.108911</td>
+      <td>7.762376</td>
+      <td>3.326733</td>
+      <td>2.217822</td>
+      <td>0.000000</td>
+      <td>4.435644</td>
+      <td>1.108911</td>
+      <td>4.435644</td>
+    </tr>
+    <tr>
+      <th>u</th>
+      <td>4.348736</td>
+      <td>1.087184</td>
+      <td>5.435921</td>
+      <td>13.046209</td>
+      <td>6.523105</td>
+      <td>4.348736</td>
+      <td>2.174368</td>
+      <td>2.174368</td>
+      <td>10.871841</td>
+      <td>4.348736</td>
+      <td>...</td>
+      <td>3.261552</td>
+      <td>2.174368</td>
+      <td>1.087184</td>
+      <td>15.220577</td>
+      <td>5.435921</td>
+      <td>5.435921</td>
+      <td>1.087184</td>
+      <td>3.261552</td>
+      <td>2.174368</td>
+      <td>3.261552</td>
+    </tr>
+    <tr>
+      <th>v</th>
+      <td>0.000000</td>
+      <td>1.705522</td>
+      <td>3.411044</td>
+      <td>3.411044</td>
+      <td>0.000000</td>
+      <td>1.705522</td>
+      <td>1.705522</td>
+      <td>0.000000</td>
+      <td>5.116567</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>5.116567</td>
+      <td>0.000000</td>
+      <td>5.116567</td>
+      <td>1.705522</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>w</th>
+      <td>3.473473</td>
+      <td>3.473473</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>3.473473</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>3.473473</td>
+      <td>3.473473</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td>0.000000</td>
+      <td>3.146536</td>
+      <td>0.000000</td>
+      <td>3.146536</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>3.146536</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>3.146536</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td>1.532320</td>
+      <td>0.000000</td>
+      <td>1.532320</td>
+      <td>4.596959</td>
+      <td>1.532320</td>
+      <td>4.596959</td>
+      <td>3.064639</td>
+      <td>0.000000</td>
+      <td>4.596959</td>
+      <td>3.064639</td>
+      <td>...</td>
+      <td>1.532320</td>
+      <td>1.532320</td>
+      <td>0.000000</td>
+      <td>3.064639</td>
+      <td>4.596959</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>z</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>4.820555</td>
+      <td>2.410277</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>4.820555</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>4.820555</td>
+      <td>2.410277</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>.</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>...</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>,</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>´</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>2.356779</td>
+      <td>3.535169</td>
+      <td>0.000000</td>
+      <td>5.891948</td>
+      <td>2.356779</td>
+      <td>0.000000</td>
+      <td>5.891948</td>
+      <td>1.178390</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>3.535169</td>
+      <td>0.000000</td>
+      <td>4.713559</td>
+      <td>5.891948</td>
+      <td>1.178390</td>
+      <td>1.178390</td>
+      <td>2.356779</td>
+      <td>1.178390</td>
+      <td>1.178390</td>
+    </tr>
+  </tbody>
+</table>
+<p>30 rows × 10000 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="character-importance">
+<h4>Character importance<a class="headerlink" href="#character-importance" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">character_importance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tf_idf_matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">character_importance</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>e</th>
+      <td>125113.684669</td>
+    </tr>
+    <tr>
+      <th>a</th>
+      <td>123670.010060</td>
+    </tr>
+    <tr>
+      <th>o</th>
+      <td>85747.972952</td>
+    </tr>
+    <tr>
+      <th>s</th>
+      <td>70315.375394</td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td>70066.128126</td>
+    </tr>
+    <tr>
+      <th>r</th>
+      <td>65436.159548</td>
+    </tr>
+    <tr>
+      <th>i</th>
+      <td>63412.427133</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>50752.372438</td>
+    </tr>
+    <tr>
+      <th>l</th>
+      <td>50629.875175</td>
+    </tr>
+    <tr>
+      <th>u</th>
+      <td>46503.212775</td>
+    </tr>
+    <tr>
+      <th>t</th>
+      <td>43147.723152</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>40424.783461</td>
+    </tr>
+    <tr>
+      <th>m</th>
+      <td>34428.137433</td>
+    </tr>
+    <tr>
+      <th>p</th>
+      <td>28977.071386</td>
+    </tr>
+    <tr>
+      <th>´</th>
+      <td>27562.534865</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>21843.549870</td>
+    </tr>
+    <tr>
+      <th>h</th>
+      <td>17641.397076</td>
+    </tr>
+    <tr>
+      <th>q</th>
+      <td>17436.006803</td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td>16103.145746</td>
+    </tr>
+    <tr>
+      <th>g</th>
+      <td>15840.303632</td>
+    </tr>
+    <tr>
+      <th>v</th>
+      <td>14928.435873</td>
+    </tr>
+    <tr>
+      <th>f</th>
+      <td>11462.988846</td>
+    </tr>
+    <tr>
+      <th>.</th>
+      <td>10000.000000</td>
+    </tr>
+    <tr>
+      <th>j</th>
+      <td>9600.300522</td>
+    </tr>
+    <tr>
+      <th>z</th>
+      <td>7664.681803</td>
+    </tr>
+    <tr>
+      <th>ñ</th>
+      <td>6922.051027</td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td>4175.453810</td>
+    </tr>
+    <tr>
+      <th>w</th>
+      <td>3268.538478</td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td>625.067991</td>
+    </tr>
+    <tr>
+      <th>,</th>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="most-common-bigrams">
+<h4>Most common bigrams<a class="headerlink" href="#most-common-bigrams" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">documents</span> <span class="o">=</span> <span class="p">[</span><span class="n">split_accent</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;text&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))]</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">documents</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_bigrams</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">bigrams</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">text</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="k">return</span> <span class="n">bigrams</span>
+
+<span class="n">bigram_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
+    <span class="n">bigram_counts</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">find_bigrams</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span>
+
+<span class="n">most_common_bigrams</span> <span class="o">=</span> <span class="n">bigram_counts</span><span class="o">.</span><span class="n">most_common</span><span class="p">()</span>
+
+<span class="n">bigrams</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">most_common_bigrams</span><span class="p">:</span>
+    <span class="n">bigrams</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">bigram</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">bigram</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">count</span><span class="p">))</span>
+
+<span class="n">bigrams</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;en&#39;, 20152),
+ (&#39;de&#39;, 17216),
+ (&#39;es&#39;, 15908),
+ (&#39;er&#39;, 15471),
+ (&#39;la&#39;, 13518),
+ (&#39;ra&#39;, 13518),
+ (&#39;ue&#39;, 13187),
+ (&#39;ar&#39;, 12702),
+ (&#39;as&#39;, 12579),
+ (&#39;on&#39;, 11833),
+ (&#39;an&#39;, 11712),
+ (&#39;qu&#39;, 11321),
+ (&#39;nt&#39;, 11267),
+ (&#39;os&#39;, 10082),
+ (&#39;ta&#39;, 9948),
+ (&#39;co&#39;, 9851),
+ (&#39;ia&#39;, 9803),
+ (&#39;do&#39;, 9773),
+ (&#39;re&#39;, 9729),
+ (&#39;or&#39;, 9545),
+ (&#39;se&#39;, 9495),
+ (&#39;el&#39;, 9315),
+ (&#39;te&#39;, 9285),
+ (&#39;´i&#39;, 8489),
+ (&#39;ad&#39;, 8312),
+ (&#39;un&#39;, 7664),
+ (&#39;st&#39;, 7577),
+ (&#39;ab&#39;, 7569),
+ (&#39;to&#39;, 7471),
+ (&#39;no&#39;, 7274),
+ (&#39;da&#39;, 7174),
+ (&#39;in&#39;, 7110),
+ (&#39;me&#39;, 6984),
+ (&#39;ci&#39;, 6923),
+ (&#39;al&#39;, 6760),
+ (&#39;na&#39;, 6555),
+ (&#39;´o&#39;, 6468),
+ (&#39;le&#39;, 6436),
+ (&#39;lo&#39;, 6386),
+ (&#39;ie&#39;, 6299),
+ (&#39;ro&#39;, 6244),
+ (&#39;su&#39;, 5611),
+ (&#39;si&#39;, 5515),
+ (&#39;ha&#39;, 5425),
+ (&#39;ma&#39;, 5364),
+ (&#39;po&#39;, 5302),
+ (&#39;ca&#39;, 5202),
+ (&#39;mi&#39;, 5053),
+ (&#39;ri&#39;, 4838),
+ (&#39;pa&#39;, 4771),
+ (&#39;sa&#39;, 4759),
+ (&#39;pe&#39;, 4739),
+ (&#39;id&#39;, 4550),
+ (&#39;nd&#39;, 4501),
+ (&#39;ec&#39;, 4483),
+ (&#39;ba&#39;, 4368),
+ (&#39;di&#39;, 4362),
+ (&#39;tr&#39;, 4247),
+ (&#39;ac&#39;, 4009),
+ (&#39;om&#39;, 3998),
+ (&#39;ti&#39;, 3887),
+ (&#39;mo&#39;, 3858),
+ (&#39;´a&#39;, 3824),
+ (&#39;ll&#39;, 3813),
+ (&#39;´e&#39;, 3695),
+ (&#39;ne&#39;, 3671),
+ (&#39;pr&#39;, 3555),
+ (&#39;i´&#39;, 3541),
+ (&#39;so&#39;, 3529),
+ (&#39;cu&#39;, 3502),
+ (&#39;nc&#39;, 3491),
+ (&#39;am&#39;, 3420),
+ (&#39;li&#39;, 3285),
+ (&#39;ve&#39;, 3178),
+ (&#39;ir&#39;, 3170),
+ (&#39;r´&#39;, 3141),
+ (&#39;us&#39;, 3115),
+ (&#39;ce&#39;, 3109),
+ (&#39;ed&#39;, 3098),
+ (&#39;is&#39;, 3031),
+ (&#39;io&#39;, 2976),
+ (&#39;od&#39;, 2949),
+ (&#39;ni&#39;, 2686),
+ (&#39;em&#39;, 2646),
+ (&#39;vi&#39;, 2578),
+ (&#39;br&#39;, 2576),
+ (&#39;mp&#39;, 2524),
+ (&#39;rt&#39;, 2482),
+ (&#39;gu&#39;, 2481),
+ (&#39;m´&#39;, 2435),
+ (&#39;ch&#39;, 2433),
+ (&#39;it&#39;, 2418),
+ (&#39;ic&#39;, 2377),
+ (&#39;im&#39;, 2335),
+ (&#39;a.&#39;, 2310),
+ (&#39;o.&#39;, 2285),
+ (&#39;eg&#39;, 2225),
+ (&#39;oc&#39;, 2225),
+ (&#39;bi&#39;, 2031),
+ (&#39;ns&#39;, 2017),
+ (&#39;ol&#39;, 1993),
+ (&#39;ui&#39;, 1987),
+ (&#39;rm&#39;, 1985),
+ (&#39;sp&#39;, 1977),
+ (&#39;ur&#39;, 1975),
+ (&#39;il&#39;, 1942),
+ (&#39;ua&#39;, 1924),
+ (&#39;pu&#39;, 1924),
+ (&#39;mu&#39;, 1895),
+ (&#39;at&#39;, 1873),
+ (&#39;ño&#39;, 1838),
+ (&#39;ho&#39;, 1820),
+ (&#39;tu&#39;, 1818),
+ (&#39;s.&#39;, 1802),
+ (&#39;he&#39;, 1798),
+ (&#39;jo&#39;, 1791),
+ (&#39;t´&#39;, 1718),
+ (&#39;ga&#39;, 1715),
+ (&#39;bl&#39;, 1669),
+ (&#39;rs&#39;, 1595),
+ (&#39;eñ&#39;, 1594),
+ (&#39;be&#39;, 1585),
+ (&#39;gr&#39;, 1567),
+ (&#39;b´&#39;, 1530),
+ (&#39;go&#39;, 1527),
+ (&#39;ig&#39;, 1525),
+ (&#39;rr&#39;, 1473),
+ (&#39;rd&#39;, 1439),
+ (&#39;rl&#39;, 1430),
+ (&#39;va&#39;, 1360),
+ (&#39;u´&#39;, 1355),
+ (&#39;et&#39;, 1351),
+ (&#39;uc&#39;, 1339),
+ (&#39;s´&#39;, 1338),
+ (&#39;c´&#39;, 1303),
+ (&#39;fe&#39;, 1302),
+ (&#39;mb&#39;, 1287),
+ (&#39;d´&#39;, 1252),
+ (&#39;ng&#39;, 1243),
+ (&#39;ib&#39;, 1241),
+ (&#39;ob&#39;, 1236),
+ (&#39;pi&#39;, 1227),
+ (&#39;vo&#39;, 1203),
+ (&#39;e.&#39;, 1176),
+ (&#39;ot&#39;, 1167),
+ (&#39;sc&#39;, 1163),
+ (&#39;ex&#39;, 1157),
+ (&#39;lu&#39;, 1145),
+ (&#39;fu&#39;, 1108),
+ (&#39;ct&#39;, 1103),
+ (&#39;ja&#39;, 1102),
+ (&#39;za&#39;, 1094),
+ (&#39;fi&#39;, 1082),
+ (&#39;ap&#39;, 1065),
+ (&#39;ud&#39;, 1058),
+ (&#39;nu&#39;, 1051),
+ (&#39;pl&#39;, 1030),
+ (&#39;yo&#39;, 1026),
+ (&#39;ev&#39;, 1010),
+ (&#39;ej&#39;, 1007),
+ (&#39;je&#39;, 946),
+ (&#39;ea&#39;, 944),
+ (&#39;nn&#39;, 941),
+ (&#39;ul&#39;, 935),
+ (&#39;ag&#39;, 932),
+ (&#39;cr&#39;, 920),
+ (&#39;´u&#39;, 914),
+ (&#39;uy&#39;, 904),
+ (&#39;lg&#39;, 896),
+ (&#39;ez&#39;, 889),
+ (&#39;du&#39;, 887),
+ (&#39;ij&#39;, 868),
+ (&#39;fa&#39;, 845),
+ (&#39;iv&#39;, 843),
+ (&#39;dr&#39;, 818),
+ (&#39;añ&#39;, 814),
+ (&#39;r.&#39;, 813),
+ (&#39;ep&#39;, 801),
+ (&#39;op&#39;, 775),
+ (&#39;ña&#39;, 753),
+ (&#39;ay&#39;, 737),
+ (&#39;lt&#39;, 731),
+ (&#39;n´&#39;, 717),
+ (&#39;eb&#39;, 717),
+ (&#39;gi&#39;, 707),
+ (&#39;bu&#39;, 705),
+ (&#39;hi&#39;, 699),
+ (&#39;l´&#39;, 698),
+ (&#39;iz&#39;, 683),
+ (&#39;um&#39;, 669),
+ (&#39;ya&#39;, 668),
+ (&#39;rg&#39;, 652),
+ (&#39;ru&#39;, 637),
+ (&#39;nv&#39;, 632),
+ (&#39;au&#39;, 628),
+ (&#39;cl&#39;, 626),
+ (&#39;fr&#39;, 611),
+ (&#39;az&#39;, 603),
+ (&#39;eo&#39;, 601),
+ (&#39;n.&#39;, 594),
+ (&#39;nf&#39;, 593),
+ (&#39;ub&#39;, 590),
+ (&#39;aj&#39;, 586),
+ (&#39;bo&#39;, 580),
+ (&#39;up&#39;, 575),
+ (&#39;av&#39;, 574),
+ (&#39;hu&#39;, 572),
+ (&#39;g´&#39;, 554),
+ (&#39;nq&#39;, 551),
+ (&#39;rc&#39;, 533),
+ (&#39;sm&#39;, 529),
+ (&#39;aq&#39;, 513),
+ (&#39;ge&#39;, 508),
+ (&#39;fo&#39;, 505),
+ (&#39;z´&#39;, 482),
+ (&#39;ug&#39;, 464),
+ (&#39;if&#39;, 464),
+ (&#39;lm&#39;, 463),
+ (&#39;ut&#39;, 462),
+ (&#39;ju&#39;, 456),
+ (&#39;zo&#39;, 453),
+ (&#39;lv&#39;, 449),
+ (&#39;nz&#39;, 430),
+ (&#39;ah&#39;, 424),
+ (&#39;sh&#39;, 423),
+ (&#39;oy&#39;, 413),
+ (&#39;rq&#39;, 412),
+ (&#39;af&#39;, 389),
+ (&#39;rn&#39;, 381),
+ (&#39;uv&#39;, 377),
+ (&#39;oo&#39;, 375),
+ (&#39;ef&#39;, 373),
+ (&#39;ov&#39;, 363),
+ (&#39;wo&#39;, 351),
+ (&#39;d.&#39;, 345),
+ (&#39;oj&#39;, 340),
+ (&#39;rv&#39;, 325),
+ (&#39;of&#39;, 322),
+ (&#39;xp&#39;, 315),
+ (&#39;v´&#39;, 308),
+ (&#39;hw&#39;, 307),
+ (&#39;ss&#39;, 305),
+ (&#39;ee&#39;, 304),
+ (&#39;uj&#39;, 301),
+ (&#39;dw&#39;, 293),
+ (&#39;wa&#39;, 293),
+ (&#39;og&#39;, 288),
+ (&#39;e´&#39;, 287),
+ (&#39;iñ&#39;, 281),
+ (&#39;p´&#39;, 278),
+ (&#39;xt&#39;, 277),
+ (&#39;ou&#39;, 276),
+ (&#39;cc&#39;, 273),
+ (&#39;xc&#39;, 271),
+ (&#39;sf&#39;, 268),
+ (&#39;oh&#39;, 256),
+ (&#39;ip&#39;, 256),
+ (&#39;bs&#39;, 255),
+ (&#39;gs&#39;, 253),
+ (&#39;wi&#39;, 250),
+ (&#39;sd&#39;, 249),
+ (&#39;a´&#39;, 246),
+ (&#39;nm&#39;, 246),
+ (&#39;mr&#39;, 244),
+ (&#39;ai&#39;, 242),
+ (&#39;gh&#39;, 241),
+ (&#39;oz&#39;, 240),
+ (&#39;by&#39;, 240),
+ (&#39;hb&#39;, 234),
+ (&#39;j´&#39;, 225),
+ (&#39;gn&#39;, 223),
+ (&#39;xi&#39;, 211),
+ (&#39;hn&#39;, 209),
+ (&#39;l.&#39;, 209),
+ (&#39;fl&#39;, 203),
+ (&#39;ld&#39;, 200),
+ (&#39;cy&#39;, 199),
+ (&#39;i.&#39;, 195),
+ (&#39;uf&#39;, 190),
+ (&#39;eq&#39;, 187),
+ (&#39;f´&#39;, 184),
+ (&#39;o´&#39;, 178),
+ (&#39;rp&#39;, 178),
+ (&#39;lc&#39;, 164),
+ (&#39;ei&#39;, 158),
+ (&#39;h´&#39;, 156),
+ (&#39;rf&#39;, 151),
+ (&#39;uz&#39;, 149),
+ (&#39;sg&#39;, 145),
+ (&#39;ey&#39;, 144),
+ (&#39;pt&#39;, 142),
+ (&#39;nr&#39;, 136),
+ (&#39;rz&#39;, 135),
+ (&#39;iu&#39;, 134),
+ (&#39;gl&#39;, 133),
+ (&#39;lq&#39;, 131),
+ (&#39;ye&#39;, 129),
+ (&#39;dd&#39;, 123),
+ (&#39;vu&#39;, 122),
+ (&#39;iq&#39;, 121),
+ (&#39;dl&#39;, 121),
+ (&#39;uo&#39;, 120),
+ (&#39;rb&#39;, 118),
+ (&#39;yu&#39;, 113),
+ (&#39;th&#39;, 110),
+ (&#39;dm&#39;, 108),
+ (&#39;dy&#39;, 106),
+ (&#39;eh&#39;, 100),
+ (&#39;xa&#39;, 99),
+ (&#39;nj&#39;, 98),
+ (&#39;lp&#39;, 94),
+ (&#39;dè&#39;, 93),
+ (&#39;èl&#39;, 93),
+ (&#39;ñ´&#39;, 92),
+ (&#39;zc&#39;, 90),
+ (&#39;z.&#39;, 89),
+ (&#39;ls&#39;, 86),
+ (&#39;ax&#39;, 81),
+ (&#39;ae&#39;, 79),
+ (&#39;y´&#39;, 76),
+ (&#39;y.&#39;, 75),
+ (&#39;eu&#39;, 74),
+ (&#39;ñe&#39;, 67),
+ (&#39;bj&#39;, 65),
+ (&#39;ox&#39;, 65),
+ (&#39;sq&#39;, 62),
+ (&#39;ji&#39;, 60),
+ (&#39;sl&#39;, 60),
+ (&#39;ow&#39;, 59),
+ (&#39;uñ&#39;, 58),
+ (&#39;tt&#39;, 58),
+ (&#39;ck&#39;, 55),
+ (&#39;mn&#39;, 54),
+ (&#39;ny&#39;, 50),
+ (&#39;rk&#39;, 48),
+ (&#39;kl&#39;, 48),
+ (&#39;pc&#39;, 43),
+ (&#39;ry&#39;, 42),
+ (&#39;yr&#39;, 42),
+ (&#39;lr&#39;, 40),
+ (&#39;nh&#39;, 39),
+ (&#39;oq&#39;, 39),
+ (&#39;dv&#39;, 38),
+ (&#39;ao&#39;, 38),
+ (&#39;t.&#39;, 37),
+ (&#39;zg&#39;, 34),
+ (&#39;lb&#39;, 32),
+ (&#39;zu&#39;, 31),
+ (&#39;sv&#39;, 31),
+ (&#39;bt&#39;, 31),
+ (&#39;oñ&#39;, 29),
+ (&#39;ht&#39;, 29),
+ (&#39;tc&#39;, 29),
+ (&#39;lf&#39;, 28),
+ (&#39;rj&#39;, 27),
+ (&#39;ly&#39;, 26),
+ (&#39;bb&#39;, 26),
+ (&#39;lz&#39;, 24),
+ (&#39;gü&#39;, 23),
+ (&#39;ke&#39;, 23),
+ (&#39;üe&#39;, 21),
+ (&#39;oi&#39;, 20),
+ (&#39;m.&#39;, 19),
+ (&#39;ph&#39;, 19),
+ (&#39;zq&#39;, 18),
+ (&#39;yn&#39;, 18),
+ (&#39;xe&#39;, 17),
+ (&#39;u.&#39;, 17),
+ (&#39;ts&#39;, 16),
+ (&#39;ñu&#39;, 15),
+ (&#39;dq&#39;, 15),
+ (&#39;xo&#39;, 14),
+ (&#39;nl&#39;, 14),
+ (&#39;tm&#39;, 13),
+ (&#39;zm&#39;, 13),
+ (&#39;oe&#39;, 12),
+ (&#39;we&#39;, 12),
+ (&#39;h.&#39;, 12),
+ (&#39;ñi&#39;, 11),
+ (&#39;my&#39;, 11),
+ (&#39;xq&#39;, 10),
+ (&#39;wt&#39;, 10),
+ (&#39;xf&#39;, 10),
+ (&#39;tl&#39;, 10),
+ (&#39;wh&#39;, 9),
+ (&#39;ii&#39;, 9),
+ (&#39;gm&#39;, 9),
+ (&#39;yd&#39;, 9),
+ (&#39;ux&#39;, 8),
+ (&#39;ps&#39;, 8),
+ (&#39;ms&#39;, 8),
+ (&#39;ds&#39;, 8),
+ (&#39;tw&#39;, 7),
+ (&#39;ym&#39;, 7),
+ (&#39;aw&#39;, 7),
+ (&#39;xx&#39;, 7),
+ (&#39;sn&#39;, 7),
+ (&#39;x.&#39;, 6),
+ (&#39;xh&#39;, 6),
+ (&#39;bv&#39;, 6),
+ (&#39;wl&#39;, 6),
+ (&#39;x´&#39;, 6),
+ (&#39;j.&#39;, 6),
+ (&#39;yt&#39;, 6),
+ (&#39;c.&#39;, 5),
+ (&#39;uq&#39;, 5),
+ (&#39;dg&#39;, 5),
+ (&#39;gy&#39;, 5),
+ (&#39;wp&#39;, 4),
+ (&#39;uh&#39;, 4),
+ (&#39;k.&#39;, 4),
+ (&#39;ty&#39;, 4),
+ (&#39;sb&#39;, 4),
+ (&#39;tê&#39;, 4),
+ (&#39;êt&#39;, 4),
+ (&#39;ki&#39;, 3),
+ (&#39;ew&#39;, 3),
+ (&#39;oa&#39;, 3),
+ (&#39;xl&#39;, 3),
+ (&#39;ff&#39;, 3),
+ (&#39;ln&#39;, 3),
+ (&#39;ys&#39;, 3),
+ (&#39;ak&#39;, 2),
+ (&#39;yl&#39;, 2),
+ (&#39;lk&#39;, 2),
+ (&#39;lh&#39;, 2),
+ (&#39;mm&#39;, 2),
+ (&#39;xv&#39;, 2),
+ (&#39;gt&#39;, 2),
+ (&#39;ks&#39;, 2),
+ (&#39;xu&#39;, 2),
+ (&#39;ze&#39;, 2),
+ (&#39;ü´&#39;, 2),
+ (&#39;yc&#39;, 2),
+ (&#39;zn&#39;, 2),
+ (&#39;án&#39;, 2),
+ (&#39;sr&#39;, 2),
+ (&#39;ik&#39;, 1),
+ (&#39;f.&#39;, 1),
+ (&#39;où&#39;, 1),
+ (&#39;ùg&#39;, 1),
+ (&#39;ml&#39;, 1),
+ (&#39;wr&#39;, 1),
+ (&#39;dh&#39;, 1),
+ (&#39;kv&#39;, 1),
+ (&#39;tf&#39;, 1),
+ (&#39;db&#39;, 1),
+ (&#39;wn&#39;, 1),
+ (&#39;pp&#39;, 1),
+ (&#39;wf&#39;, 1),
+ (&#39;ix&#39;, 1),
+ (&#39;dj&#39;, 1),
+ (&#39;tp&#39;, 1),
+ (&#39;të&#39;, 1),
+ (&#39;tz&#39;, 1),
+ (&#39;zb&#39;, 1),
+ (&#39;ár&#39;, 1),
+ (&#39;bd&#39;, 1),
+ (&#39;wk&#39;, 1),
+ (&#39;ek&#39;, 1),
+ (&#39;hm&#39;, 1),
+ (&#39;yi&#39;, 1),
+ (&#39;zl&#39;, 1),
+ (&#39;hl&#39;, 1),
+ (&#39;cb&#39;, 1),
+ (&#39;eà&#39;, 1),
+ (&#39;àt&#39;, 1)]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="genetic-algorithm">
+<h3>Genetic Algorithm<a class="headerlink" href="#genetic-algorithm" title="Link to this heading">#</a></h3>
+<section id="data-preprocessing">
+<h4>Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">key_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;j&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;´&#39;</span><span class="p">,</span> <span class="s1">&#39;ñ&#39;</span><span class="p">]</span>
+<span class="n">effort_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">]</span>
+
+<span class="n">accented_char_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;á&#39;</span><span class="p">:</span> <span class="s1">&#39;´a&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;é&#39;</span><span class="p">:</span> <span class="s1">&#39;´e&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;í&#39;</span><span class="p">:</span> <span class="s1">&#39;´i&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ó&#39;</span><span class="p">:</span> <span class="s1">&#39;´o&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ú&#39;</span><span class="p">:</span> <span class="s1">&#39;´u&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="import-data">
+<h4>Import Data<a class="headerlink" href="#import-data" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;spanish_billion_words1000.csv&#39;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+  <span class="n">csvFile</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">lines</span> <span class="ow">in</span> <span class="n">csvFile</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">accented_char</span><span class="p">,</span> <span class="n">replacement</span> <span class="ow">in</span> <span class="n">accented_char_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+      <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">accented_char</span><span class="p">,</span> <span class="n">replacement</span><span class="p">)</span>
+    <span class="n">text_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+
+<span class="n">text_list</span> <span class="o">=</span> <span class="n">text_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="genetic-algorithm-implementation-auxiliary-functions">
+<h4>Genetic Algorithm implementation - auxiliary functions<a class="headerlink" href="#genetic-algorithm-implementation-auxiliary-functions" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">layout</span><span class="p">):</span>
+    <span class="n">total_effort</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">sentence</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">layout</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">total_effort</span> <span class="o">+=</span> <span class="n">layout</span><span class="p">[</span><span class="n">char</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">total_effort</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_population</span><span class="p">(</span><span class="n">population_size</span><span class="p">,</span> <span class="n">key_list</span><span class="p">,</span> <span class="n">effort_list</span><span class="p">):</span>
+    <span class="n">population</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">population_size</span><span class="p">):</span>
+        <span class="n">newdict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">shuffled_efforts</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">effort_list</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">effort_list</span><span class="p">))</span>  <span class="c1"># Shuffle efforts</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">effort</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">key_list</span><span class="p">,</span> <span class="n">shuffled_efforts</span><span class="p">):</span>
+            <span class="n">newdict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">effort</span>
+        <span class="n">population</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newdict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">population</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Randomly chooses layouts</span>
+<span class="k">def</span> <span class="nf">tournament_selection</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">tournament_size</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">selected</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">)):</span>
+        <span class="c1"># Ensure that tournament size is not larger than the population size</span>
+        <span class="n">actual_tournament_size</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">tournament_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">))</span>
+        <span class="n">participants</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">actual_tournament_size</span><span class="p">)</span>
+        <span class="n">winner</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">participants</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">fitness</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+        <span class="n">selected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">winner</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">selected</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Randomly choose a point to split and then merge two different keyboard layouts, results in two children that are mixes of the parents.</span>
+<span class="k">def</span> <span class="nf">crossover</span><span class="p">(</span><span class="n">parent1</span><span class="p">,</span> <span class="n">parent2</span><span class="p">):</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">parent1</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>  <span class="c1"># Shuffle keys</span>
+
+    <span class="c1"># Inherit efforts from both parents randomly</span>
+    <span class="n">half</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">offspring</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="p">(</span><span class="n">parent1</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">half</span> <span class="k">else</span> <span class="n">parent2</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keys</span><span class="p">)}</span>
+
+    <span class="c1"># Calculate the effort frequencies from parents</span>
+    <span class="n">effort_counts</span> <span class="o">=</span> <span class="p">{</span><span class="n">effort</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">parent1</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">effort</span><span class="p">)</span> <span class="k">for</span> <span class="n">effort</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">parent1</span><span class="o">.</span><span class="n">values</span><span class="p">())}</span>
+    <span class="c1"># Get the current efforts in the child</span>
+    <span class="n">current_counts</span> <span class="o">=</span> <span class="p">{</span><span class="n">effort</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">offspring</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">effort</span><span class="p">)</span> <span class="k">for</span> <span class="n">effort</span> <span class="ow">in</span> <span class="n">effort_counts</span><span class="p">}</span>
+
+    <span class="c1"># Identify surplus and deficit efforts</span>
+    <span class="n">surplus</span> <span class="o">=</span> <span class="p">[(</span><span class="n">effort</span><span class="p">,</span> <span class="n">current_counts</span><span class="p">[</span><span class="n">effort</span><span class="p">]</span> <span class="o">-</span> <span class="n">count</span><span class="p">)</span> <span class="k">for</span> <span class="n">effort</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">effort_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">current_counts</span><span class="p">[</span><span class="n">effort</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">count</span><span class="p">]</span>
+    <span class="n">deficit</span> <span class="o">=</span> <span class="p">[(</span><span class="n">effort</span><span class="p">,</span> <span class="n">count</span> <span class="o">-</span> <span class="n">current_counts</span><span class="p">[</span><span class="n">effort</span><span class="p">])</span> <span class="k">for</span> <span class="n">effort</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">effort_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">current_counts</span><span class="p">[</span><span class="n">effort</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">count</span><span class="p">]</span>
+
+    <span class="c1"># Create mappings</span>
+    <span class="n">surplus_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">effort</span><span class="p">:</span> <span class="n">over</span> <span class="k">for</span> <span class="n">effort</span><span class="p">,</span> <span class="n">over</span> <span class="ow">in</span> <span class="n">surplus</span><span class="p">}</span>
+    <span class="n">deficit_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">effort</span><span class="p">:</span> <span class="n">under</span> <span class="k">for</span> <span class="n">effort</span><span class="p">,</span> <span class="n">under</span> <span class="ow">in</span> <span class="n">deficit</span><span class="p">}</span>
+
+    <span class="c1"># Fix distribution in child</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">effort</span> <span class="ow">in</span> <span class="n">offspring</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">effort</span> <span class="ow">in</span> <span class="n">surplus_dict</span> <span class="ow">and</span> <span class="n">surplus_dict</span><span class="p">[</span><span class="n">effort</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">def_effort</span><span class="p">,</span> <span class="n">def_count</span> <span class="ow">in</span> <span class="n">deficit</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">def_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># Replace one surplus effort with one in deficit</span>
+                    <span class="n">offspring</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">def_effort</span>
+                    <span class="n">surplus_dict</span><span class="p">[</span><span class="n">effort</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+                    <span class="n">deficit_dict</span><span class="p">[</span><span class="n">def_effort</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+                    <span class="c1"># Update the deficit list to reflect the decrement</span>
+                    <span class="n">deficit</span> <span class="o">=</span> <span class="p">[(</span><span class="n">eff</span><span class="p">,</span> <span class="n">cnt</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">eff</span> <span class="o">==</span> <span class="n">def_effort</span> <span class="k">else</span> <span class="p">(</span><span class="n">eff</span><span class="p">,</span> <span class="n">cnt</span><span class="p">)</span> <span class="k">for</span> <span class="n">eff</span><span class="p">,</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="n">deficit</span><span class="p">]</span>
+                    <span class="k">break</span>  <span class="c1"># Move to the next key-effort pair needing correction</span>
+
+    <span class="k">return</span> <span class="n">offspring</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Randomly swaps two positions in order to maintain genetic diversity and prevent premature convergence</span>
+<span class="k">def</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">individual</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">mutation_rate</span><span class="p">:</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">individual</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">point1</span><span class="p">,</span> <span class="n">point2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="c1"># Swapping the efforts associated with two keys</span>
+        <span class="n">individual</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">point1</span><span class="p">]],</span> <span class="n">individual</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">point2</span><span class="p">]]</span> <span class="o">=</span> <span class="n">individual</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">point2</span><span class="p">]],</span> <span class="n">individual</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">point1</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">individual</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">population_size</span><span class="p">,</span> <span class="n">generations</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">,</span> <span class="n">crossover_rate</span><span class="p">,</span> <span class="n">selection_pressure</span><span class="p">,</span> <span class="n">plot_effort</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">tournament_size</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mf">0.07</span> <span class="o">*</span> <span class="n">population_size</span><span class="p">)</span>
+    <span class="n">population</span> <span class="o">=</span> <span class="n">create_population</span><span class="p">(</span><span class="n">population_size</span><span class="p">,</span> <span class="n">key_list</span><span class="p">,</span> <span class="n">effort_list</span><span class="p">)</span>
+    
+    <span class="n">best_fitness_over_generations</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">best_global_individual</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">best_global_fitness</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">generation</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">generations</span><span class="p">):</span>
+        <span class="n">selected</span> <span class="o">=</span> <span class="n">tournament_selection</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">tournament_size</span><span class="p">,</span> <span class="n">text_list</span><span class="p">)</span>
+        <span class="n">offspring</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">selected</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">crossover_rate</span><span class="p">:</span>
+                <span class="n">child</span> <span class="o">=</span> <span class="n">crossover</span><span class="p">(</span><span class="n">selected</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">selected</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">offspring</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">offspring</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">selected</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">selected</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">selected</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">offspring</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">selected</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+
+        <span class="k">for</span> <span class="n">individual</span> <span class="ow">in</span> <span class="n">offspring</span><span class="p">:</span>
+            <span class="n">mutate</span><span class="p">(</span><span class="n">individual</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">)</span>
+
+        <span class="n">population</span> <span class="o">=</span> <span class="n">offspring</span>
+
+        <span class="c1"># Track the best individual for this generation</span>
+        <span class="n">current_generation_fitness</span> <span class="o">=</span> <span class="p">[(</span><span class="n">individual</span><span class="p">,</span> <span class="n">fitness</span><span class="p">(</span><span class="n">text_list</span><span class="p">,</span> <span class="n">individual</span><span class="p">))</span> <span class="k">for</span> <span class="n">individual</span> <span class="ow">in</span> <span class="n">population</span><span class="p">]</span>
+        <span class="n">best_individual</span><span class="p">,</span> <span class="n">best_fitness</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">current_generation_fitness</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># Compare with the global best and update if this generation&#39;s best is better</span>
+        <span class="k">if</span> <span class="n">best_fitness</span> <span class="o">&lt;</span> <span class="n">best_global_fitness</span><span class="p">:</span>
+            <span class="n">best_global_individual</span> <span class="o">=</span> <span class="n">best_individual</span>
+            <span class="n">best_global_fitness</span> <span class="o">=</span> <span class="n">best_fitness</span>
+
+        <span class="c1"># Only track the best fitness for each generation</span>
+        <span class="n">best_fitness_over_generations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">best_fitness</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">text_list</span><span class="p">))</span>
+
+    <span class="c1"># Plot the results after all generations are completed if plot_effort is True</span>
+    <span class="k">if</span> <span class="n">plot_effort</span><span class="p">:</span>
+        <span class="n">generations</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">best_fitness_over_generations</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">generations</span><span class="p">,</span> <span class="n">best_fitness_over_generations</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Best Fitness per Generation&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Generation&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Best Fitness&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Best Fitness Evolution Over Generations&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Return the global best individual and its fitness</span>
+    <span class="k">return</span> <span class="n">best_global_individual</span><span class="p">,</span> <span class="o">-</span><span class="n">best_global_fitness</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_list</span><span class="p">),</span> <span class="n">best_fitness_over_generations</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_layout</span><span class="p">(</span><span class="n">best_individual</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best Layout:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">effort</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">best_individual</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">effort</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population_size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">generations</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">mutation_rate</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">crossover_rate</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">selection_pressure</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">tournament_size</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mf">0.07</span> <span class="o">*</span> <span class="n">population_size</span><span class="p">)</span> <span class="c1">#common practice is to use small fraction of population size (7% being used)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">population_size</span><span class="p">,</span> <span class="n">generations</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">,</span> <span class="n">crossover_rate</span><span class="p">,</span> <span class="n">selection_pressure</span><span class="p">)</span>
+
+<span class="n">print_layout</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Layout:
+i: 1.0
+g: 1.0
+o: 1.0
+e: 1.0
+r: 1.2
+´: 1.2
+a: 1.5
+l: 1.5
+d: 1.7
+s: 1.7
+b: 2.0
+y: 2.0
+z: 2.2
+n: 2.2
+p: 2.4
+.: 2.4
+h: 2.5
+u: 2.5
+m: 2.6
+j: 2.6
+q: 2.8
+c: 2.8
+t: 2.9
+f: 2.9
+ñ: 3.4
+w: 3.5
+v: 3.5
+k: 3.5
+x: 3.5
+,: 3.8
+201.01600000005197
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="class-geneticalgorithmoptimizer-for-grid-search-hyper-parameter-tuning">
+<h4>Class GeneticAlgorithmOptimizer for grid search (hyper parameter tuning)<a class="headerlink" href="#class-geneticalgorithmoptimizer-for-grid-search-hyper-parameter-tuning" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GeneticAlgorithmOptimizer</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">generations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">crossover_rate</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">selection_pressure</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">population_size</span> <span class="o">=</span> <span class="n">population_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generations</span> <span class="o">=</span> <span class="n">generations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutation_rate</span> <span class="o">=</span> <span class="n">mutation_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crossover_rate</span> <span class="o">=</span> <span class="n">crossover_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">selection_pressure</span> <span class="o">=</span> <span class="n">selection_pressure</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">best_layout_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_score_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_fitness_ver_gen</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">population_size</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generations</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mutation_rate</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">crossover_rate</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">selection_pressure</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_score_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">crossover_rate</span><span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">generations</span><span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span> <span class="mi">150</span><span class="p">,</span> <span class="n">selection_pressure</span><span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">plot_effort</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/7f08ef20d344f11234fa880810f6008693adfce8a8b967cd51e24ca211990880.png"><img alt="../_images/7f08ef20d344f11234fa880810f6008693adfce8a8b967cd51e24ca211990880.png" src="../_images/7f08ef20d344f11234fa880810f6008693adfce8a8b967cd51e24ca211990880.png" style="width: 1000px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_layout</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="o">-</span><span class="n">y</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">z</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Layout:
+s: 1.0
+o: 1.0
+e: 1.0
+l: 1.0
+n: 1.2
+a: 1.2
+i: 1.5
+t: 1.5
+d: 1.7
+r: 1.7
+c: 2.0
+m: 2.0
+k: 2.2
+b: 2.2
+u: 2.4
+z: 2.4
+ñ: 2.5
+.: 2.5
+,: 2.6
+h: 2.6
+q: 2.8
+´: 2.8
+g: 2.9
+j: 2.9
+p: 3.4
+v: 3.5
+y: 3.5
+f: 3.5
+x: 3.5
+w: 3.8
+
+186.42330000003534
+
+[213.1548000000986, 200.27620000009267, 193.31600000004843, 186.42330000003534, 186.42330000003534, 186.42330000003534, 186.42330000003534, 186.42330000003534, 186.42330000003534, 186.42330000003534, 186.42330000003534, 186.42330000003534, 198.27010000006243, 198.27010000006243, 198.27010000006243, 210.30310000005366, 210.30310000005366, 210.30310000005366, 218.14060000005986, 218.14060000005986, 218.14060000005986, 218.14060000005986, 218.14060000005986, 218.14060000005986, 218.14060000005986, 218.14060000005986, 218.14060000005986, 218.14060000005986, 218.14060000005986, 218.14060000005986, 218.14060000005986, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641, 223.5136000000641]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 </section>
 
@@ -450,7 +2415,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to my personal portfolio!</p>
+        <p class="prev-next-title">Welcome to my Personal Portfolio!</p>
       </div>
     </a>
     <a class="right-next"
@@ -479,6 +2444,24 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-report">Final Report</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">Appendix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#term-frequencies">Term Frequencies</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-document-frequencies">Inverse Document Frequencies</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-matrix">TF-IDF Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#character-importance">Character importance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#most-common-bigrams">Most common bigrams</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#genetic-algorithm">Genetic Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">Data Preprocessing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data">Import Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#genetic-algorithm-implementation-auxiliary-functions">Genetic Algorithm implementation - auxiliary functions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#class-geneticalgorithmoptimizer-for-grid-search-hyper-parameter-tuning">Class GeneticAlgorithmOptimizer for grid search (hyper parameter tuning)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
@@ -503,7 +2486,7 @@ By Raquel Ovadia
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>
