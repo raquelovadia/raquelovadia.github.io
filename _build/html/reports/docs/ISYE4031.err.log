@@ -1,0 +1,255 @@
+Traceback (most recent call last):
+  File "/Users/raquelovadia/anaconda3/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/raquelovadia/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/raquelovadia/anaconda3/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/raquelovadia/anaconda3/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/raquelovadia/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/raquelovadia/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/raquelovadia/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+setwd("~/Desktop/ISYE4031/")
+data = read.csv("yahoo_stock.csv", header = TRUE)[1:1460,]
+return_data = read.csv("return_yahoo.csv", header = TRUE)[1:1460,]
+
+time = data$Date
+high = data$High
+low = data$Low
+open = data$Open
+close = data$Close
+volume = data$Volume
+adj_close = data$Adj.Close
+
+# Multiple Linear Regression
+z = lm(high~low+open+close+volume)
+plot(high~low+open+close+volume)
+abline(lm(high~volume), col = "red")
+summary(lm(high~low+open+close+volume))
+anova(lm(high~low+open+close+volume))
+
+# VIF for each predictor
+install.packages("car")
+library(car)
+data$average = rowMeans(data[, c("Low", "Open", "Close")])
+average = data$average
+summary(lm(high~average+volume))
+
+vif_values = vif(lm(high~average +volume))
+vif_values
+
+# PCA
+standardized_data <- scale(data[, c("High", "Low", "Open", "Close", "Volume")])
+pca_result <- prcomp(standardized_data)
+summary(pca_result)
+num_components <- 4
+data_transformed <- as.data.frame(predict(pca_result, newdata = standardized_data)[, 1:num_components])
+data_for_regression <- cbind(data_transformed, high = data$High)
+model <- lm(high ~ ., data = data_for_regression)
+summary(model)
+
+# Lasso
+install.packages("glmnet")
+library(glmnet)
+
+X <- as.matrix(data[, c("Low", "Open", "Close", "Volume")])
+y <- as.vector(data$High)
+
+X <- scale(X)
+
+lambda_values <- 10^seq(10, -2, length = 100)
+lasso_model <- cv.glmnet(X, y, alpha = 1, lambda = lambda_values)
+plot(lasso_model)
+optimal_lambda <- lasso_model$lambda.min
+final_lasso_model <- glmnet(X, y, alpha = 1, lambda = optimal_lambda)
+final_lasso_model
+coefficients <- coef(final_lasso_model)
+print(coefficients)
+summary(final_lasso_model)
+cv.glmnet(X, y, alpha = 1)$cvm[which.min(cv.glmnet(X, y, alpha = 1)$lambda)]
+
+A <- as.matrix(data[, c("average", "Volume")])
+A <- scale(A)
+
+cv.glmnet(A, y, alpha = 1)$cvm[which.min(cv.glmnet(A, y, alpha = 1)$lambda)]
+
+#Residuals 
+residuals <- y - predict(final_lasso_model, newx = X, s = optimal_lambda)
+plot(predict(final_lasso_model, newx = X, s = optimal_lambda), residuals, 
+     main = "Lasso Regression Residual Plot", xlab = "Fitted Values", ylab = "Residuals")
+abline(h = 0, col = "red", lty = 2)
+# Create Q-Q plot
+qqnorm(residuals)
+qqline(residuals, col = "red")
+
+# Baseline
+mean_high = mean(data$High)
+baseline_predictions = rep(mean_high, nrow(data[3:5]))
+baseline_mse = mean((data$High - baseline_predictions)^2)
+baseline_mse
+
+# Corrplot
+clean_data = data[, -(1)]
+library(corrplot) # activating the corrplot package
+corrplot(cor(clean_data))
+
+# Scatter Matrix
+install.packages("ggplot2")
+install.packages("GGally")
+library(ggplot2) 
+library(GGally) 
+Scatter_Matrix = ggpairs(data,columns = c(2:6), 
+                          title = "Scatter Plot Matrix for Yahoo Stock Prediction", 
+                          axisLabels = "show") 
+Scatter_Matrix
+
+
+
+
+# Time Series
+Yahoo_Data = data[2]
+plot(ts(Yahoo_Data))
+
+time = 1:1460
+model1 = lm(high~time)
+plot(time,high,type='l')
+
+abline(model1,col='red')
+
+# Diagnostics
+count = ts(na.omit(high), frequency = 365)
+decomp = stl(count, 'periodic')
+deseasonal = seasadj(decomp)
+plot(decomp)
+plot(deseasonal)
+
+library(forecast)
+checkresiduals(ts(Yahoo_Data))
+
+# Seasonal
+ts <- ts(high, frequency = 365)
+plot(ts)
+decomposition <- stl(ts, s.window = "periodic")
+seasonal_component <- decomposition$time.series[, "seasonal"]
+plot(seasonal_component)
+
+summary(model1)
+
+library(lmtest)
+dwtest(ts(Yahoo_Data))
+
+plot(density(residuals(model1)))
+abline(0,0)
+
+plot((ts(Yahoo_Data)))
+
+checkresiduals(ts(Yahoo_Data))
+
+plot(fitted(high), res)
+
+qqnorm(residuals(model1))
+qqline(residuals(model1), col='red')
+
+# Box Jenkins
+install.packages("forecast")
+library(forecast)
+
+plot(ts(Yahoo_Data))
+abline(model1,col='red')
+
+
+ts_data = ts(return_data$Return)
+plot(ts_data)
+model2 = lm(return_data$Return~return_data$Time)
+abline(model2,col='red')
+
+
+summary(ts_data)
+arima_model = auto.arima(ts_data)
+summary(arima_model)
+forecast_result = forecast(arima_model, h = 375)
+plot(forecast_result)
+
+#diff_data = diff(ts_data,differences=)
+acf(ts_data)
+pacf(diff(ts_data, differences=2))
+arima_final = auto.arima(ts_data)
+summary(arima_final)
+
+
+residuals_arima <- residuals(arima_final)
+durbin_watson_stat <- sum(diff(residuals_arima)^2) / sum(residuals_arima^2)       
+durbin_watson_stat
+
+plot(arima_model$residuals)
+
+diff_data=diff(ts_data,differences=1)
+plot(diff_data, main = "First Order Differences Plot")
+
+fit = arima(ts_data, order = c(0, 0, 1))
+summary(fit)
+tsdiag(fit)
+
+# Histogram
+hist(high, prob = TRUE,
+     main = "Histogram", col = "blue", xlim=c(1845,3650), xlab = "High", ylim=c(0,0.0011))
+
+
+lines(density(high), col = "green", lwd = 3)
+
+r=return_data$Return
+ts_model = ts(r)
+plot(ts(return_data$Return), ylab = 'Return')
+checkresiduals(ts_data)
+plot(residuals(ts_model))
+
+residuals <- residuals(arima_final)
+residuals <- log(residuals(arima_final) + 1)
+hist(residuals, main = "Histogram of Residuals")
+lines(density(residuals), col = "blue")
+
+qqnorm(residuals)
+qqline(residuals)
+
+shapiro.test(residuals)
+
+install.packages("nortest")
+library(nortest)  # You may need to install and load the 'nortest' package
+ad.test(residuals)
+
+# wo outliers
+z_scores <- scale(return_data[2])
+your_data_no_outliers <- return_data[2][abs(z_scores) < 3]
+ts_data = ts(your_data_no_outliers)
+plot(wo_data)
+acf(ts_data, main="Autocorrelation Function for z")
+pacf(ts_data, main="Partial Autocorrelation Function for z")
+arima_try = auto.arima(wo_data)
+summary(arima_try)
+
+residuals1 <- log(residuals(arima_try) + 1)
+hist(residuals1, main = "Histogram of Residuals")
+lines(density(residuals1), col = "blue")
+
+qqnorm(residuals1)
+qqline(residuals1)
+
+shapiro.test(residuals1)
+------------------
+
+
+[0;36m  Cell [0;32mIn[2], line 5[0;36m[0m
+[0;31m    time = data$Date[0m
+[0m               ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+

@@ -2,13 +2,14 @@
     בס’’ד
 <div align="left">  
   
-# Welcome to my personal portfolio! 
-I am an Industrial Engineering student with a passion for improving processes and systems to optimize efficiency and productivity by analyzing different datasets. Here, you’ll find a showcase of my projects, skills, and interests in the field of Industrial Engineering, especially in Analytics and Data Science.
+# Welcome to my Personal Portfolio!
 
-I am constantly seeking new opportunities to grow and expand my knowledge in this area, and I am excited to share my growth with fellow engineers and anyone who is interested in this field. Whether you’re looking for solutions to complex problems or just curious about my work, I invite you to explore my site and learn more about what I do.
+I am an Industrial Engineering student driven by a passion for enhancing processes and systems to boost efficiency and productivity through data analysis. This portfolio showcases my projects, skills, and interests in Industrial Engineering, with a focus on Analytics and Data Science.
 
-Thank you for visiting and I look forward to connecting with you! 
-Check me out on LinkedIn: https://www.linkedin.com/in/raquelob/
+I'm always eager to explore new opportunities and deepen my knowledge in these areas. I hope to share my journey with fellow engineers and anyone curious about my work. Whether you're seeking innovative solutions to complex challenges or simply want to learn more, I invite you to explore my portfolio.
+
+Thank you for stopping by! Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/raquelob/).
+
 
 ```{figure} ../raquel_foto.jpg
 ---
@@ -19,11 +20,17 @@ align: right
 
 ```
   
-  
+## Projects
+
+- [Optimal Spanish Keyboard](CX4240.ipynb)
+- [EDA of Yahoo Stock Price Prediction](ISYE4031.ipynb)
+- [Nucleic Acid Folding Project](ISYE3133.ipynb)
+- [Exploring the Relationship Between Gender and Wages](ISYE3030.ipynb)
+- [Data Cleaning and Visualization Project](Collection&Cleaning.ipynb)
+- [Web Development Project](Lab01.ipynb)
 
 
 
+<!-- ```{tableofcontents} ``` -->
 
-```{tableofcontents}
-```
 

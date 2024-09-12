@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/ISYE4031';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Exploring the Relationship Between Gender and Wages" href="ISYE3030.html" />
+    <link rel="next" title="Nucleic Acid Folding Project" href="ISYE3133.html" />
     <link rel="prev" title="Optimal Spanish Keyboard" href="CX4240.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -175,7 +175,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to my personal portfolio!
+                    Welcome to my Personal Portfolio!
                 </a>
             </li>
         </ul>
@@ -183,6 +183,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="CX4240.html">Optimal Spanish Keyboard</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">EDA of Yahoo Stock Price Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISYE3133.html">Nucleic Acid Folding Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ISYE3030.html">Exploring the Relationship Between Gender and Wages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Collection%26Cleaning.html">Data Cleaning and Visualization Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Lab01.html">Web Development Project</a></li>
@@ -227,53 +228,6 @@
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/raquelovadia/raquelovadia.github.io" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/raquelovadia/raquelovadia.github.io/issues/new?title=Issue%20on%20page%20%2Fdocs/ISYE4031.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -382,6 +336,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-report">Final Report</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-code">R Code</a></li>
 </ul>
             </nav>
         </div>
@@ -410,6 +365,241 @@ document.write(`
             
         ></iframe>
         </div></div>
+</div>
+</section>
+<section id="r-code">
+<h2>R Code<a class="headerlink" href="#r-code" title="Link to this heading">#</a></h2>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">setwd</span><span class="p">(</span><span class="s2">&quot;~/Desktop/ISYE4031/&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;yahoo_stock.csv&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="mi">1460</span><span class="p">,]</span>
+<span class="n">return_data</span> <span class="o">=</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;return_yahoo.csv&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="mi">1460</span><span class="p">,]</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="n">data</span><span class="err">$</span><span class="n">Date</span>
+<span class="n">high</span> <span class="o">=</span> <span class="n">data</span><span class="err">$</span><span class="n">High</span>
+<span class="n">low</span> <span class="o">=</span> <span class="n">data</span><span class="err">$</span><span class="n">Low</span>
+<span class="nb">open</span> <span class="o">=</span> <span class="n">data</span><span class="err">$</span><span class="n">Open</span>
+<span class="n">close</span> <span class="o">=</span> <span class="n">data</span><span class="err">$</span><span class="n">Close</span>
+<span class="n">volume</span> <span class="o">=</span> <span class="n">data</span><span class="err">$</span><span class="n">Volume</span>
+<span class="n">adj_close</span> <span class="o">=</span> <span class="n">data</span><span class="err">$</span><span class="n">Adj</span><span class="o">.</span><span class="n">Close</span>
+
+<span class="c1"># Multiple Linear Regression</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">lm</span><span class="p">(</span><span class="n">high</span><span class="o">~</span><span class="n">low</span><span class="o">+</span><span class="nb">open</span><span class="o">+</span><span class="n">close</span><span class="o">+</span><span class="n">volume</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">high</span><span class="o">~</span><span class="n">low</span><span class="o">+</span><span class="nb">open</span><span class="o">+</span><span class="n">close</span><span class="o">+</span><span class="n">volume</span><span class="p">)</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">lm</span><span class="p">(</span><span class="n">high</span><span class="o">~</span><span class="n">volume</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">lm</span><span class="p">(</span><span class="n">high</span><span class="o">~</span><span class="n">low</span><span class="o">+</span><span class="nb">open</span><span class="o">+</span><span class="n">close</span><span class="o">+</span><span class="n">volume</span><span class="p">))</span>
+<span class="n">anova</span><span class="p">(</span><span class="n">lm</span><span class="p">(</span><span class="n">high</span><span class="o">~</span><span class="n">low</span><span class="o">+</span><span class="nb">open</span><span class="o">+</span><span class="n">close</span><span class="o">+</span><span class="n">volume</span><span class="p">))</span>
+
+<span class="c1"># VIF for each predictor</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;car&quot;</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+<span class="n">data</span><span class="err">$</span><span class="n">average</span> <span class="o">=</span> <span class="n">rowMeans</span><span class="p">(</span><span class="n">data</span><span class="p">[,</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;Low&quot;</span><span class="p">,</span> <span class="s2">&quot;Open&quot;</span><span class="p">,</span> <span class="s2">&quot;Close&quot;</span><span class="p">)])</span>
+<span class="n">average</span> <span class="o">=</span> <span class="n">data</span><span class="err">$</span><span class="n">average</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">lm</span><span class="p">(</span><span class="n">high</span><span class="o">~</span><span class="n">average</span><span class="o">+</span><span class="n">volume</span><span class="p">))</span>
+
+<span class="n">vif_values</span> <span class="o">=</span> <span class="n">vif</span><span class="p">(</span><span class="n">lm</span><span class="p">(</span><span class="n">high</span><span class="o">~</span><span class="n">average</span> <span class="o">+</span><span class="n">volume</span><span class="p">))</span>
+<span class="n">vif_values</span>
+
+<span class="c1"># PCA</span>
+<span class="n">standardized_data</span> <span class="o">&lt;-</span> <span class="n">scale</span><span class="p">(</span><span class="n">data</span><span class="p">[,</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;High&quot;</span><span class="p">,</span> <span class="s2">&quot;Low&quot;</span><span class="p">,</span> <span class="s2">&quot;Open&quot;</span><span class="p">,</span> <span class="s2">&quot;Close&quot;</span><span class="p">,</span> <span class="s2">&quot;Volume&quot;</span><span class="p">)])</span>
+<span class="n">pca_result</span> <span class="o">&lt;-</span> <span class="n">prcomp</span><span class="p">(</span><span class="n">standardized_data</span><span class="p">)</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">pca_result</span><span class="p">)</span>
+<span class="n">num_components</span> <span class="o">&lt;-</span> <span class="mi">4</span>
+<span class="n">data_transformed</span> <span class="o">&lt;-</span> <span class="k">as</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">pca_result</span><span class="p">,</span> <span class="n">newdata</span> <span class="o">=</span> <span class="n">standardized_data</span><span class="p">)[,</span> <span class="mi">1</span><span class="p">:</span><span class="n">num_components</span><span class="p">])</span>
+<span class="n">data_for_regression</span> <span class="o">&lt;-</span> <span class="n">cbind</span><span class="p">(</span><span class="n">data_transformed</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">data</span><span class="err">$</span><span class="n">High</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">high</span> <span class="o">~</span> <span class="o">.</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data_for_regression</span><span class="p">)</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c1"># Lasso</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;glmnet&quot;</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">glmnet</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">&lt;-</span> <span class="k">as</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">data</span><span class="p">[,</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;Low&quot;</span><span class="p">,</span> <span class="s2">&quot;Open&quot;</span><span class="p">,</span> <span class="s2">&quot;Close&quot;</span><span class="p">,</span> <span class="s2">&quot;Volume&quot;</span><span class="p">)])</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="k">as</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">data</span><span class="err">$</span><span class="n">High</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">&lt;-</span> <span class="n">scale</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">lambda_values</span> <span class="o">&lt;-</span> <span class="mi">10</span><span class="o">^</span><span class="n">seq</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">lasso_model</span> <span class="o">&lt;-</span> <span class="n">cv</span><span class="o">.</span><span class="n">glmnet</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="k">lambda</span> <span class="o">=</span> <span class="n">lambda_values</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">lasso_model</span><span class="p">)</span>
+<span class="n">optimal_lambda</span> <span class="o">&lt;-</span> <span class="n">lasso_model</span><span class="err">$</span><span class="k">lambda</span><span class="o">.</span><span class="n">min</span>
+<span class="n">final_lasso_model</span> <span class="o">&lt;-</span> <span class="n">glmnet</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="k">lambda</span> <span class="o">=</span> <span class="n">optimal_lambda</span><span class="p">)</span>
+<span class="n">final_lasso_model</span>
+<span class="n">coefficients</span> <span class="o">&lt;-</span> <span class="n">coef</span><span class="p">(</span><span class="n">final_lasso_model</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">final_lasso_model</span><span class="p">)</span>
+<span class="n">cv</span><span class="o">.</span><span class="n">glmnet</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="err">$</span><span class="n">cvm</span><span class="p">[</span><span class="n">which</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">glmnet</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="err">$</span><span class="k">lambda</span><span class="p">)]</span>
+
+<span class="n">A</span> <span class="o">&lt;-</span> <span class="k">as</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">data</span><span class="p">[,</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;average&quot;</span><span class="p">,</span> <span class="s2">&quot;Volume&quot;</span><span class="p">)])</span>
+<span class="n">A</span> <span class="o">&lt;-</span> <span class="n">scale</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="n">cv</span><span class="o">.</span><span class="n">glmnet</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="err">$</span><span class="n">cvm</span><span class="p">[</span><span class="n">which</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">glmnet</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="err">$</span><span class="k">lambda</span><span class="p">)]</span>
+
+<span class="c1">#Residuals </span>
+<span class="n">residuals</span> <span class="o">&lt;-</span> <span class="n">y</span> <span class="o">-</span> <span class="n">predict</span><span class="p">(</span><span class="n">final_lasso_model</span><span class="p">,</span> <span class="n">newx</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">optimal_lambda</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">final_lasso_model</span><span class="p">,</span> <span class="n">newx</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">optimal_lambda</span><span class="p">),</span> <span class="n">residuals</span><span class="p">,</span> 
+     <span class="n">main</span> <span class="o">=</span> <span class="s2">&quot;Lasso Regression Residual Plot&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s2">&quot;Fitted Values&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s2">&quot;Residuals&quot;</span><span class="p">)</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">h</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">lty</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Create Q-Q plot</span>
+<span class="n">qqnorm</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+<span class="n">qqline</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="c1"># Baseline</span>
+<span class="n">mean_high</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="err">$</span><span class="n">High</span><span class="p">)</span>
+<span class="n">baseline_predictions</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">mean_high</span><span class="p">,</span> <span class="n">nrow</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="n">baseline_mse</span> <span class="o">=</span> <span class="n">mean</span><span class="p">((</span><span class="n">data</span><span class="err">$</span><span class="n">High</span> <span class="o">-</span> <span class="n">baseline_predictions</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">baseline_mse</span>
+
+<span class="c1"># Corrplot</span>
+<span class="n">clean_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[,</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">library</span><span class="p">(</span><span class="n">corrplot</span><span class="p">)</span> <span class="c1"># activating the corrplot package</span>
+<span class="n">corrplot</span><span class="p">(</span><span class="n">cor</span><span class="p">(</span><span class="n">clean_data</span><span class="p">))</span>
+
+<span class="c1"># Scatter Matrix</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;ggplot2&quot;</span><span class="p">)</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;GGally&quot;</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span> 
+<span class="n">library</span><span class="p">(</span><span class="n">GGally</span><span class="p">)</span> 
+<span class="n">Scatter_Matrix</span> <span class="o">=</span> <span class="n">ggpairs</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">6</span><span class="p">),</span> 
+                          <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Scatter Plot Matrix for Yahoo Stock Prediction&quot;</span><span class="p">,</span> 
+                          <span class="n">axisLabels</span> <span class="o">=</span> <span class="s2">&quot;show&quot;</span><span class="p">)</span> 
+<span class="n">Scatter_Matrix</span>
+
+
+
+
+<span class="c1"># Time Series</span>
+<span class="n">Yahoo_Data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="n">Yahoo_Data</span><span class="p">))</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">1460</span>
+<span class="n">model1</span> <span class="o">=</span> <span class="n">lm</span><span class="p">(</span><span class="n">high</span><span class="o">~</span><span class="n">time</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">high</span><span class="p">,</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;l&#39;</span><span class="p">)</span>
+
+<span class="n">abline</span><span class="p">(</span><span class="n">model1</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="c1"># Diagnostics</span>
+<span class="n">count</span> <span class="o">=</span> <span class="n">ts</span><span class="p">(</span><span class="n">na</span><span class="o">.</span><span class="n">omit</span><span class="p">(</span><span class="n">high</span><span class="p">),</span> <span class="n">frequency</span> <span class="o">=</span> <span class="mi">365</span><span class="p">)</span>
+<span class="n">decomp</span> <span class="o">=</span> <span class="n">stl</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="s1">&#39;periodic&#39;</span><span class="p">)</span>
+<span class="n">deseasonal</span> <span class="o">=</span> <span class="n">seasadj</span><span class="p">(</span><span class="n">decomp</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">decomp</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">deseasonal</span><span class="p">)</span>
+
+<span class="n">library</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
+<span class="n">checkresiduals</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="n">Yahoo_Data</span><span class="p">))</span>
+
+<span class="c1"># Seasonal</span>
+<span class="n">ts</span> <span class="o">&lt;-</span> <span class="n">ts</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">frequency</span> <span class="o">=</span> <span class="mi">365</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+<span class="n">decomposition</span> <span class="o">&lt;-</span> <span class="n">stl</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="s2">&quot;periodic&quot;</span><span class="p">)</span>
+<span class="n">seasonal_component</span> <span class="o">&lt;-</span> <span class="n">decomposition</span><span class="err">$</span><span class="n">time</span><span class="o">.</span><span class="n">series</span><span class="p">[,</span> <span class="s2">&quot;seasonal&quot;</span><span class="p">]</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">seasonal_component</span><span class="p">)</span>
+
+<span class="n">summary</span><span class="p">(</span><span class="n">model1</span><span class="p">)</span>
+
+<span class="n">library</span><span class="p">(</span><span class="n">lmtest</span><span class="p">)</span>
+<span class="n">dwtest</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="n">Yahoo_Data</span><span class="p">))</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">residuals</span><span class="p">(</span><span class="n">model1</span><span class="p">)))</span>
+<span class="n">abline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plot</span><span class="p">((</span><span class="n">ts</span><span class="p">(</span><span class="n">Yahoo_Data</span><span class="p">)))</span>
+
+<span class="n">checkresiduals</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="n">Yahoo_Data</span><span class="p">))</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">fitted</span><span class="p">(</span><span class="n">high</span><span class="p">),</span> <span class="n">res</span><span class="p">)</span>
+
+<span class="n">qqnorm</span><span class="p">(</span><span class="n">residuals</span><span class="p">(</span><span class="n">model1</span><span class="p">))</span>
+<span class="n">qqline</span><span class="p">(</span><span class="n">residuals</span><span class="p">(</span><span class="n">model1</span><span class="p">),</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="c1"># Box Jenkins</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;forecast&quot;</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="n">Yahoo_Data</span><span class="p">))</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">model1</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+
+<span class="n">ts_data</span> <span class="o">=</span> <span class="n">ts</span><span class="p">(</span><span class="n">return_data</span><span class="err">$</span><span class="n">Return</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">ts_data</span><span class="p">)</span>
+<span class="n">model2</span> <span class="o">=</span> <span class="n">lm</span><span class="p">(</span><span class="n">return_data</span><span class="err">$</span><span class="n">Return</span><span class="o">~</span><span class="n">return_data</span><span class="err">$</span><span class="n">Time</span><span class="p">)</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">model2</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+
+<span class="n">summary</span><span class="p">(</span><span class="n">ts_data</span><span class="p">)</span>
+<span class="n">arima_model</span> <span class="o">=</span> <span class="n">auto</span><span class="o">.</span><span class="n">arima</span><span class="p">(</span><span class="n">ts_data</span><span class="p">)</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">arima_model</span><span class="p">)</span>
+<span class="n">forecast_result</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">arima_model</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">375</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">forecast_result</span><span class="p">)</span>
+
+<span class="c1">#diff_data = diff(ts_data,differences=)</span>
+<span class="n">acf</span><span class="p">(</span><span class="n">ts_data</span><span class="p">)</span>
+<span class="n">pacf</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">ts_data</span><span class="p">,</span> <span class="n">differences</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">arima_final</span> <span class="o">=</span> <span class="n">auto</span><span class="o">.</span><span class="n">arima</span><span class="p">(</span><span class="n">ts_data</span><span class="p">)</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">arima_final</span><span class="p">)</span>
+
+
+<span class="n">residuals_arima</span> <span class="o">&lt;-</span> <span class="n">residuals</span><span class="p">(</span><span class="n">arima_final</span><span class="p">)</span>
+<span class="n">durbin_watson_stat</span> <span class="o">&lt;-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">residuals_arima</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">residuals_arima</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>       
+<span class="n">durbin_watson_stat</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">arima_model</span><span class="err">$</span><span class="n">residuals</span><span class="p">)</span>
+
+<span class="n">diff_data</span><span class="o">=</span><span class="n">diff</span><span class="p">(</span><span class="n">ts_data</span><span class="p">,</span><span class="n">differences</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">diff_data</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s2">&quot;First Order Differences Plot&quot;</span><span class="p">)</span>
+
+<span class="n">fit</span> <span class="o">=</span> <span class="n">arima</span><span class="p">(</span><span class="n">ts_data</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+<span class="n">tsdiag</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+
+<span class="c1"># Histogram</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span>
+     <span class="n">main</span> <span class="o">=</span> <span class="s2">&quot;Histogram&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="mi">1845</span><span class="p">,</span><span class="mi">3650</span><span class="p">),</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s2">&quot;High&quot;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.0011</span><span class="p">))</span>
+
+
+<span class="n">lines</span><span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">high</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">r</span><span class="o">=</span><span class="n">return_data</span><span class="err">$</span><span class="n">Return</span>
+<span class="n">ts_model</span> <span class="o">=</span> <span class="n">ts</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="n">return_data</span><span class="err">$</span><span class="n">Return</span><span class="p">),</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s1">&#39;Return&#39;</span><span class="p">)</span>
+<span class="n">checkresiduals</span><span class="p">(</span><span class="n">ts_data</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">residuals</span><span class="p">(</span><span class="n">ts_model</span><span class="p">))</span>
+
+<span class="n">residuals</span> <span class="o">&lt;-</span> <span class="n">residuals</span><span class="p">(</span><span class="n">arima_final</span><span class="p">)</span>
+<span class="n">residuals</span> <span class="o">&lt;-</span> <span class="n">log</span><span class="p">(</span><span class="n">residuals</span><span class="p">(</span><span class="n">arima_final</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s2">&quot;Histogram of Residuals&quot;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">residuals</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+
+<span class="n">qqnorm</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+<span class="n">qqline</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+
+<span class="n">shapiro</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;nortest&quot;</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">nortest</span><span class="p">)</span>  <span class="c1"># You may need to install and load the &#39;nortest&#39; package</span>
+<span class="n">ad</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+
+<span class="c1"># wo outliers</span>
+<span class="n">z_scores</span> <span class="o">&lt;-</span> <span class="n">scale</span><span class="p">(</span><span class="n">return_data</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">your_data_no_outliers</span> <span class="o">&lt;-</span> <span class="n">return_data</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="nb">abs</span><span class="p">(</span><span class="n">z_scores</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">ts_data</span> <span class="o">=</span> <span class="n">ts</span><span class="p">(</span><span class="n">your_data_no_outliers</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">wo_data</span><span class="p">)</span>
+<span class="n">acf</span><span class="p">(</span><span class="n">ts_data</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s2">&quot;Autocorrelation Function for z&quot;</span><span class="p">)</span>
+<span class="n">pacf</span><span class="p">(</span><span class="n">ts_data</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s2">&quot;Partial Autocorrelation Function for z&quot;</span><span class="p">)</span>
+<span class="n">arima_try</span> <span class="o">=</span> <span class="n">auto</span><span class="o">.</span><span class="n">arima</span><span class="p">(</span><span class="n">wo_data</span><span class="p">)</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">arima_try</span><span class="p">)</span>
+
+<span class="n">residuals1</span> <span class="o">&lt;-</span> <span class="n">log</span><span class="p">(</span><span class="n">residuals</span><span class="p">(</span><span class="n">arima_try</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">residuals1</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s2">&quot;Histogram of Residuals&quot;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">residuals1</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+
+<span class="n">qqnorm</span><span class="p">(</span><span class="n">residuals1</span><span class="p">)</span>
+<span class="n">qqline</span><span class="p">(</span><span class="n">residuals1</span><span class="p">)</span>
+
+<span class="n">shapiro</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">residuals1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -454,11 +644,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="ISYE3030.html"
+       href="ISYE3133.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Exploring the Relationship Between Gender and Wages</p>
+        <p class="prev-next-title">Nucleic Acid Folding Project</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -479,6 +669,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-report">Final Report</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-code">R Code</a></li>
 </ul>
   </nav></div>
 
@@ -503,7 +694,7 @@ By Raquel Ovadia
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

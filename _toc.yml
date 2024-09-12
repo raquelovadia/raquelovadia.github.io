@@ -3,12 +3,13 @@
 
 format: jb-book
 root: docs/intro
-# parts: 
-# - caption: Projects
-chapters:
-- file: docs/CX4240.ipynb
-- file: docs/ISYE4031.ipynb
-- file: docs/ISYE3030.ipynb
-- file: docs/Collection&Cleaning.ipynb
-- file: docs/Lab01.ipynb
+parts: 
+- caption: Projects
+  chapters:
+  - file: docs/CX4240
+  - file: docs/ISYE4031
+  - file: docs/ISYE3133
+  - file: docs/ISYE3030
+  - file: docs/Collection&Cleaning
+  - file: docs/Lab01
 # - file: docs/
